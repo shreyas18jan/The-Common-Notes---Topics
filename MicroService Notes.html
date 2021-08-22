@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+th {
+  background-color: #A9A9A9;
+}
+div, table, th, td {
+  border: 1px solid black;
+  text-align: left;
+}
+div{
+  text-align: center;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;border: 0px;">
+    <br>
+    <h1>MicroServices Notes</h1>
+    <br>
+</div>
+<br>
+
+<h2> Monolithic Application:</h2><br>
+The Monolithic application represents Single Codebase - Where the application will have different layers like Presentation Layer, Service Layer , Data layer etc as a single war/jar file for deployment.<br>
+Approach is Centralized Governance, the modules are tightly coupled as one single war/jar file.<br>
+<br>
+<b>Other Drawbacks:</b><br>
+- As features are added, war/jar file becomes larger and difficult to maintain.<br>
+- For a small change whole Application needs to be redeployed.<br>
+- One issue can bring down the entire application/service to halt.<br>
+<br>
+<h2>MicroServices:</h2><br>
+Micro Services architecture is a variant of Service Oriented Architecture where Application is broken into Independently Developed, Independently Deployable and Independently Testable services.<br>
+Based on the Business Capabilities services are organized. These services talk to each other over the network to fulfill a request.<br>
+Since the approach is Decentralizing control/governance, Changes to one service don't always require changing all other services. When change is required in a certain part of the application, only the related service can be modified and redeployed. No need to modify and redeploy the entire application.<br>
+<br>
+<b>Other Benefits:</b><br>
+- Easy for Maintaining and Deploying.<br>
+- Since this is a modular approach, Business re-usability is achieved.<br>
+- Different technologies can be adopted for different MicroServices.<br>
+<br>
+<b>Drawbacks:</b><br>
+- Complexity increases as the Micro Services increases.<br>
+- Influences Network Latency because of frequent interaction between services.<br>
+- Debugging becomes challenging as the control flows between services.<br>
+
+<br>
+
+<b>Other Differences:</b><br>
+<table width=100%>
+    <tr>
+        <th>Monolithic Application</th>
+        <th>MicroServices</th>
+    </tr>
+    <tr>
+        <td>No Latency in Monolithic as no all calls are Local.</td>
+        <td>Latency increases as the the number of Micro Services increases.</td>
+    </tr>
+    <tr>
+        <td>In Monolithic applications the logging will happen in a single file - Easy to check and understand.</td>
+        <td>Logging happens in different microservices, Takes time to trace a execution flow.</td>
+    </tr>
+    <tr>
+        <td>Scaling is easy , since a copy of an application has to be deployed.</td>
+        <td>Complexity increases as it is not easy system to administer (Example in Kubernetes Cluster).</td>
+    </tr>
+    <tr>
+        <td>Turn around time for Monolithic Application takes time since the entire application has to be deployed.</td>
+        <td>More Reliable since bring up the replacement service will be quick.</td>
+    </tr>
+    <tr>
+        <td>Throughput is faster in Monolithic as services doesn't have network latency.</td>
+        <td>Compared to Monolithic , micro services might deliver lesser throughput.</td>
+    </tr>
+</table>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

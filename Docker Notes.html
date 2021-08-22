@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+th {
+  background-color: #A9A9A9;
+}
+div, table, th, td {
+  border: 1px solid black;
+  text-align: left;
+}
+div{
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;border: 0px;">
+    <br>
+    <h1>Docker Notes</h1>
+    <br>
+</div>
+<br>
+
+Container : <br>
+- Application code, dependency and libraries are packed or packaged together as a Single Unit.<br>
+- Portable.<br>
+- Lightweight.<br>
+<br>
+Docker is <b>Container Management Service.</b><br>
+<br>
+<table width=100%>
+    <tr>
+        <th>Virtual Machine</th>
+        <th>Container</th>
+    </tr>
+    <tr>
+        <td>Secure</td>
+        <td>Less Secure</td>
+    </tr>
+    <tr>
+        <td>More Size</td>
+        <td>Less Size</td>
+    </tr>
+    <tr>
+        <td>Limited Performance</td>
+        <td>Native Performance</td>
+    </tr>
+    <tr>
+        <td>Each VM VM runs in its own OS </td>
+        <td> All container share the same host OS</td>
+    </tr>
+    <tr>
+        <td>Hardware-Level Virtualization</td>
+        <td>OS Virtualization</td>
+    </tr>
+    <tr>
+        <td>StartUp Time in minutes</td>
+        <td>StartUp Time in Seconds</td>
+    </tr>
+    <tr>
+        <td>Allocates required memory</td>
+        <td>Requires less memory</td>
+    </tr>
+    <tr>
+        <td>Full isolation</td>
+        <td>Process level isolation</td>
+    </tr>
+</table>
+
+<br>
+Docker Image : Blue print or Package Template.<br>
+<br>
+Docker Container : Running instance of Docker Image.<br>
+<br>
+Docker Engine consists of <br>
+<b>&emsp;- Docker Daemon </b>: Maintains Docker objects.<br>
+<b>&emsp;- REST API </b>: Helps to talk to Docker daemon<br>
+<b>&emsp;- Docker CLI </b>: Command that uses REST API calls<br>
+<br>
+<br>
+<b> Docker CLI Commands:</b>
+<br>
+1.<b style="color:Tomato;">RUN</b> : Executes Container from the Image. If the Docker Image mentioned is not present locally, then the image will be pulled from Docker Hub.
+<br>&emsp;eq:- <b>docker run hello-world</b>
+<br>
+<br>
+2.<b style="color:Tomato;">PS</b> : Lists Containers<br>
+&emsp;eq:- <b>docker ps</b>
+<br>
+&emsp;eq:- <b>docker ps -all</b>
+<br>
+<br>
+3.<b style="color:Tomato;">RM</b> : Removes a Container. To remove, Container should be in Stopped State<br>
+&emsp;eq:- <b>docker rm hello-world</b>
+<br>
+<br>
+4.<b style="color:Tomato;">IMAGES</b> : Lists available image locally<br>
+&emsp;eq:- <b>docker images</b>
+<br>
+<br>
+5.<b style="color:Tomato;">RMI</b> : Remove an Image. To Remove the Image, the dependent containers created from this image should be stopped and removed first.<br>
+&emsp;eq:- <b>docker rmi hello-world</b>
+<br>
+<br>
+6.<b style="color:Tomato;">PULL</b> : Download the image locally without running it.<br>
+&emsp;eq:- <b>docker pull hello-world</b>
+<br>
+<br>
+Containers are not meant to host the OS. Once the process is completed, the container exits.<br>
+<br>
+To prolong the exit , use sleep command with run command.<br>
+<b>
+    &emsp;> docker run hello-world sleep 10<br>
+    &emsp;> docker ps
+</b>
+<br>
+<br>
+To Execute a command in running container<br>
+<b>
+    &emsp;> docker exec hello-world cat /etc/hosts<br>
+</b>
+<br>
+<br>
+To Run command in detach mode<br>
+<b>
+    &emsp;> docker run -d hello-world <br>
+</b>
+<br>
+<br>
+To attach the detached Container<br>
+<b>
+    &emsp;> docker ps -all <br>
+    &emsp;> docker attach &lt;container_Id_Beginning&gt;<br>
+</b>
+<br>
+<br>
+To run a specific version of image  make use of tag. If tag is not specified then it will be treated as latest<br>
+<b>
+    &emsp;> docker run hello-world:2.0 <br>
+</b>
+<br>
+<br>
+To run a docker in Interactive mode use option -i and -t, be default, docker runs in Non-Interactive mode.<br>
+<b>
+    &emsp;> docker run -it hello-world <br>
+</b>
+<br>
+<br>
+To do port mapping<br>
+<b>
+    &emsp;> docker run -p 80:8080 hello-world <br>
+</b>
+<br>
+<br>
+To do Volume mapping<br>
+<b>
+    &emsp;> docker run -v /opt/data:/var/html hello-world <br>
+</b>
+<br>
+<br>
+To see the details about the Container<br>
+<b>
+    &emsp;> docker inspect hello-world <br>
+</b>
+<br>
+<br>
+To check the logs<br>
+<b>
+    &emsp;> docker logs hello-world <br>
+</b>
+<br>
+<br>
+To use the environment variable <br>
+<b>
+    &emsp;> docker run -e name=TheCommonGuy hello-world <br>
+</b>
+<br>
+<br>
+To see the details about Files executed and Size acquired <br>
+<b>
+    &emsp;> docker history hello-world <br>
+</b>
+<br>
+<br>
+Docker file consists of following Content : <br>
+&emsp;<b style="color:Tomato;">&lt;INSTRUCTION&gt; &lt;ARGUMENT&gt;</b>
+<br>
+<br>
+Example file : <br><br>
+<table width=100%>
+    <th>
+        FROM maven:3-openjdk-8<br>
+        WORKDIR /opt<br>
+        COPY . .<br>
+        RUN mvn clean install<br>
+        CMD mvn run<br>
+    </th>
+</table>
+<br>
+
+How to create your own image?<br>
+1. List out the commands.<br>
+2. Convert Step 1 to DockerFile<br>
+3. Build the image<br>
+<b>&emsp;> docker build Dockerfile -t hello-docker</b>
+<br>
+4. If we want to make this available for the public then we need to add this in decker hub registry<br>
+<b>&emsp;> docker push hello-docker</b>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

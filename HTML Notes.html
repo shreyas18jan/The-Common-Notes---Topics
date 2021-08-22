@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>HTML Notes</h1>
+    <br>
+</div>
+<br>
+<br>
+
+- HTML stand Hyper Text Markup Language.<br>
+- HTML is collection of Tags : Which are Instructions to the Browser.<br>
+- HTML is composed of three parts:<br>
+&emsp;1. HTML version information.<br>
+&emsp;2. Header Section.<br>
+&emsp;3. Body Section.
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;!doctype html&gt;
+    &lt;html&gt;
+    &emsp;&lt;!-- Comment : Header Section --&gt;
+    &emsp;&lt;head&gt;
+    &emsp;&emsp;&lt;!-- Comment : Title Section --&gt;
+    &emsp;&emsp;&lt;title&gt;
+    &emsp;&emsp;&emsp;This section contains HTML Title
+    &emsp;&emsp;&lt;/title&gt;
+    &emsp;&lt;/head&gt;
+    &emsp;&lt;!-- Comment : Body Section --&gt;
+    &emsp;&lt;body&gt;
+    &emsp;&emsp;This section contains HTML Body
+    &emsp;&lt;/body&gt;
+    &lt;/html&gt;
+
+</div><br><br>
+<b>doctype</b> tag : mentions it is HTML5 Standard.<br>
+<b>html</b> tag : Main tag of HTML document.<br>
+<b>head</b> tag : Contains metadata info about the web page that are not displayed for the user.<br>
+<b>title</b> tag : Specifies the title of a web page. Title tags are displayed on search engine results pages (SERPs) as the clickable headline.<br>
+<b>body</b> tag : Defines the main content of an HTML document which displays on the browser.<br>
+<b>&lt;!-- --&gt;</b> : Defines comment tag, text written inside it, will not be processed by the browser, even if it is another HTML tag.<br>
+<br>
+- HTML ignores empty spaces that are part of the document.<br>
+- HTML tags are Case Insensitive.
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;h1&gt; Heading tag : h1 &lt;/h1&gt;
+    &lt;h2&gt; Heading tag : h2 &lt;/h2&gt;
+    &lt;h3&gt; Heading tag : h3 &lt;/h3&gt;
+    &lt;h4&gt; Heading tag : h4 &lt;/h4&gt;
+    &lt;h5&gt; Heading tag : h5 &lt;/h5&gt;
+    &lt;h6&gt; Heading tag : h6 &lt;/h6&gt;
+
+    &lt;p&gt;
+    &emsp;Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.
+    &lt;/p&gt;
+    &lt;p&gt;
+    &emsp;Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.Paragraph tag added here.
+    &lt;/p&gt;
+
+    &lt;b&gt; This section of text is written in Bold letters &lt;/b&gt;
+    &lt;br&gt;
+    &lt;br&gt;
+    &lt;i&gt; This section of text is written in Italic letters &lt;/i&gt;
+
+</div><br><br>
+
+<b>h1 to h6</b> tags : Used to define HTML headings. &lt;h1&gt; defines the most important heading. &lt;h6&gt; defines the least important heading. <br>
+<b>p</b> tag : Defines a paragraph. Browsers automatically add a single blank line before and after each p tag.<br>
+<b>br</b> tag : Inserts a single line break.<br>
+<b>b</b> tag : Specifies bold text.<br>
+<b>i</b> tag : Specifies italic text.<br>
+<br>
+- Other text basics/formatting tags.<br>
+<b>section</b> tag : Represents a generic standalone section of a HTML document.<br>
+<b>aside</b> tag : Represents a portion of a document whose content is only indirectly related to the document's main content.<br>
+<b>article</b> tag : Represents a self-contained composition in a document.<br>
+<b>blockquote</b> tag : Specifies a section that is quoted from another source.<br>
+<br>
+<h3>About Lists</h3>
+<b>li</b> tag : Used to represent an item in a list. It must be contained in a parent element: an ordered list ( &lt;ol&gt; ) and an unordered list ( &lt;ul&gt; ).
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;b&gt; Ordered List &lt;/b&gt;
+    &lt;ol&gt;
+    &emsp;&lt;li&gt; First Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Second Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Third Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Fourth Step &lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;b&gt; Ordered List type - Alphabets&lt;/b&gt;
+    &lt;ol type="a"&gt;
+    &emsp;&lt;li&gt; First Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Second Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Third Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Fourth Step &lt;/li&gt;
+    &lt;/ol&gt;
+
+</div><br><br>
+<b>ol</b> tag : Defines an ordered list. An ordered list can be numerical or alphabetical. type inside ol tag is an attribute and the listing can be changed to alphabets fashion.
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;b&gt; UnOrdered List &lt;/b&gt;
+    &lt;ul&gt;
+    &emsp;&lt;li&gt; First Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Second Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Third Step &lt;/li&gt;
+    &emsp;&lt;li&gt; Fourth Step &lt;/li&gt;
+    &lt;/ul&gt;
+
+</div><br><br>
+<b>ul</b> tag : Defines an unordered (bulleted) list.
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;b&gt; Definition List &lt;/b&gt;
+    &lt;dl&gt;
+    &emsp;&lt;dt&gt; Topic One : &lt;/dt&gt;
+    &emsp;&lt;dd&gt; Description One &lt;/dd&gt;
+    &emsp;&lt;br&gt;
+    &emsp;&lt;dt&gt; Topic Two : &lt;/dt&gt;
+    &emsp;&lt;dd&gt; Description Two &lt;/dd&gt;
+    &lt;/dl&gt;
+
+</div><br><br>
+<b>dl</b> tag : Represents a description list. The element encloses a list of groups of terms (specified using the &lt;dt&gt; element) and descriptions (provided by &lt;dd&gt; elements).
+
+<h3>About Image</h3>
+<b>img</b> tag : Used to embed an image in an HTML page. Images can be added from Locally or from link. src attribute holds the value of the image's location. width and height attribute will help us to resize the image to our need. alt attribute helps us to have an alternate text when image is not available.
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;figure&gt;
+    &emsp;&lt;img src="https://firebasestorage.googleapis.com/v0/b/the-common-notes.appspot.com/o/ImageFiles%2FwebServiceImage.jpg?alt=media&token=c9a47536-65a5-4de8-8cf4-003474079cc0" width="200px" height="100px" alt="HTML Image will be displayed here"&gt;
+    &emsp;&lt;figcaption&gt;
+    &emsp;&emsp;Caption is added for this image
+    &emsp;&lt;/figcaption&gt;
+    &lt;/figure&gt;
+
+</div><br><br>
+<b>figure</b> tag : Specifies self-contained content. Content of this tag is related to the main flow, its position is independent of the main flow, and if removed it should not affect the flow of the document.<br>
+<b>figcaption</b> tag : Defines a caption for a figure tag.<br>
+<br>
+<h3>About CSS</h3>
+- CSS is the language used to style a Web page.<br>
+- CSS stands for Cascading Style Sheets.<br>
+- CSS works on the presentation aspect of the webpage.<br>
+- 3 Different ways you can mention the styles: From Lower Priority to Higher Priority.<br>
+&emsp;1. From file with the extension *.css<br>
+&emsp;&emsp;Snippet :<br>
+<br>
+&emsp;&emsp;&emsp;<b style="color:Tomato;">&lt;link href="./style.css" rel="stylesheet" type="text/css"&gt;</b><br>
+<br>
+&emsp;&emsp;<b>href</b> attribute : location of the file present.<br>
+&emsp;&emsp;<b>rel</b> attribute : relationship attribute tells how this document should be treated.<br>
+&emsp;&emsp;<b>type</b> attribute : tells what kind of document.<br>
+<br>
+&emsp;2. With style tag.<br>
+&emsp;&emsp;Snippet : <br>
+<br>
+&emsp;&emsp;&emsp;<b style="color:Tomato;">p {<br>
+    &emsp;&emsp;&emsp;&emsp;text-align: right;<br>
+    &emsp;&emsp;&emsp;}</b><br>
+<br>
+&emsp;3. With Style attribute.<br>
+&emsp;&emsp;Snippet :<br>
+<br>
+&emsp;&emsp;&emsp;<b style="color:Tomato;">&lt;p style="text-align: left;"&gt; This text will be left aligned &lt;/p&gt;</b><br>
+<br>
+<b>Common Styles :</b><br>
+<br>
+1. <b>text-align</b> : Text aligned either center, right or left. Used with heading tags, paragraph tags etc.<br>
+2. <b>font-size</b> : xx-small, x-small, small, medium, large, x-large and xx-large are the font sizes available. Used with heading tags, paragraph tags etc. YOu can also provide absolute size using %, px, cm and in. Example :-  &lt;p style="font-size: 40px;"&gt; Check This One! &lt;/p&gt;<br>
+3. <b>font-family</b> : Text font style/s will be changed with the help of this property in the style attribute.<br>
+4. <b>color</b> : Text color can be changed with this property in the style attribute. Value takes names, hsl, rgb method(Absolute values for 3 colors) and also Hexa Decimal Values(Starts with '#' symbol) for the shaded colors.<br>
+5. <b>list-style-type</b> : Used with OrderedList or UnOrderedList. List style can be changes from number to characters to images. It allows Custom images as List indexes.<br>
+6. <b>font-style</b> : Text style can be changed with this - bold, italic and underline.<br>
+<br>
+And many more properties are present only obvious ones are discussed here.<br>
+<br>
+<h3>Links to other pages :</h3>
+&emsp;Snippet :<br><br>
+&emsp;&emsp;<b style="color:Tomato;">&lt;a href="www.google.com" target="_blank"&gt; Google Me! &lt;/a&gt;</b><br>
+<br>
+<b>a</b> tag : Anchor tag, it anchors / navigates to a different page on clicking the mentioned text of a tag. href can also contain another html files which are locally available. Target attribute mentions whether to navigate to a page in the same window or different window.<br>
+<b>nav</b> tag : Used for declaring the navigational section in HTML documents. Defines a set of navigation links.<br>
+<br>
+<h3>Creating a Block in the web page</h3>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &emsp;&lt;div&gt;
+    &emsp;&emsp;&lt;p&gt;
+    &emsp;&emsp;&emsp;A paragraph is a series of related sentences developing a central idea, called the topic. Try to think about paragraphs in terms of thematic unity: a paragraph is a sentence or a group of sentences that supports one central, unified idea. Paragraphs add one idea at a time to your broader argument.
+    &emsp;&emsp;&lt;/p&gt;
+    &emsp;&lt;/div&gt;
+
+</div><br><br>
+<b>div</b> tag : Defines a division or a section in an HTML document. The div tag is used as a container for HTML elements - which is then styled with CSS or manipulated with JavaScript. Properties like Width, Height, Margin, Padding and Background color can be manipulated with CSS.<br>
+
+<h3>Tables in the webpage</h3>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &lt;table&gt;
+    &emsp;&lt;thead&gt;
+    &emsp;&emsp;&lt;tr&gt;
+    &emsp;&emsp;&emsp;&lt;th&gt;First Name&lt;/th&gt;
+    &emsp;&emsp;&emsp;&lt;th&gt;Last Name&lt;/th&gt;
+    &emsp;&emsp;&lt;/tr&gt;
+    &emsp;&lt;/thead&gt;
+    &emsp;&lt;tbody&gt;
+    &emsp;&emsp;&lt;tr&gt;
+    &emsp;&emsp;&emsp;&lt;td&gt;Name 1&lt;/td&gt;
+    &emsp;&emsp;&emsp;&lt;td&gt;Last 1&lt;/td&gt;
+    &emsp;&emsp;&lt;/tr&gt;
+    &emsp;&emsp;&lt;tr&gt;
+    &emsp;&emsp;&emsp;&lt;td&gt;Name 2&lt;/td&gt;
+    &emsp;&emsp;&emsp;&lt;td&gt;Last 2&lt;/td&gt;
+    &emsp;&emsp;&lt;/tr&gt;
+    &emsp;&lt;/tbody&gt;
+    &emsp;&lt;tfoot&gt;
+    &emsp;&emsp;&lt;tr&gt;
+    &emsp;&emsp;&emsp;&lt;td&gt;Name 3&lt;/td&gt;
+    &emsp;&emsp;&emsp;&lt;td&gt;Last 3&lt;/td&gt;
+    &emsp;&emsp;&lt;/tr&gt;
+    &emsp;&lt;/tfoot&gt;
+    &lt;/table&gt;
+
+</div><br><br>
+
+<b>table</b> tag : Defines HTML table. HTML table consists of one or more tr tag, th tag, and td tag elements.<br>
+<b>th</b> tag : Defines a header cell in an HTML table. <br>
+<b>tr</b> tag : Defines a row of cells in a table.<br>
+<b>td</b> tag : Defines a standard data cell in an HTML table.<br>
+<b>thead</b> tag : Used to group header content in an HTML table.<br>
+<b>tbody</b> tag : Used to group the body content in an HTML table.<br>
+<b>tfoot</b> tag : Used to group footer content in an HTML table. <br>
+
+<h3>User Input Form in webpage</h3>
+<b>form</b> tag - used to create an HTML form for user input.<br>
+<b>input</b> tag - Individual User Input type.<br>
+&emsp;Snippet :<br><br>
+&emsp;&emsp;&emsp;<b style="color:Tomato;">&lt;input type="text" name="username" id="username" required&gt;</b><br>
+<br>
+&emsp;Important attributes:<br>
+&emsp;&emsp;<b>type</b> - Used for what type of User Inout to expect. Different types are - text, number checkbox, radio, email, password, date, time etc<br>
+&emsp;&emsp;<b>required</b> - Used when the Input tag made mandatory to proceed to next navigation/submission. By default, input is not mandatory.<br>
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+</body>
+</html>

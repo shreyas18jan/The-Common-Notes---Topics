@@ -1,0 +1,323 @@
+<html>
+<head>
+<style>
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>JSON Notes</h1>
+    <br>
+</div>
+<br>
+JSON or JavaScript Object Notation is a lightweight text-based open standard designed for human-readable data interchange.<br>
+<br>
+JSON Internet Media type is application/json<br>
+<br>
+<b>Uses of JSON :</b><br>
+1. It is used while writing JavaScript based applications that includes browser extensions and websites.<br>
+2. JSON format is used for serializing and transmitting structured data over network connection.<br>
+3. It is primarily used to transmit data between a server and web applications.<br>
+4. Web services and APIs use JSON format to provide public data.<br>
+5. It can be used with modern programming languages.<br>
+<br>
+<b>Characteristics of JSON :</b><br>
+1. JSON is easy to read and write.<br>
+2. It is a lightweight text-based interchange format.<br>
+3. JSON is language independent.<br>
+<br>
+<b>JSON Syntax :</b><br>
+1. Data is represented in name/value pairs.<br>
+2. Curly braces hold objects and each name is followed by ':'(colon), the name/value pairs are separated by , (comma).<br>
+3. Square brackets hold arrays and values are separated by ,(comma).<br>
+<br>
+<b>JSON supports the following two data structures : </b><br>
+1. Collection of name/value pairs: This Data Structure is supported by different programming languages.<br>
+2. Ordered list of values: It includes array, list, vector or sequence etc<br>
+<br>
+<b>JSON format supports the following data types :</b><br>
+Number : double- precision floating-point format in JavaScript<br>
+String : double-quoted Unicode with backslash escaping<br>
+Boolean : true or false<br>
+Array : an ordered sequence of values<br>
+Value : it can be a string, a number, true or false, null etc<br>
+Object : an unordered collection of key:value pairs<br>
+Whitespace : can be used between any pair of tokens<br>
+null : empty<br>
+<br>
+<b>JSON vs XML :</b><br>
+JSON and XML are human readable formats and are language independent.<br>
+They both have support for creation, reading and decoding in real world situations.<br>
+XML is more verbose than JSON, so it is faster to write JSON for programmers.<br>
+XML is used to describe the structured data, which doesn't include arrays whereas JSON include arrays.<br>
+JavaScript's eval method parses JSON. When applied to JSON, eval returns the described object.<br>
+<br>
+<h3>WORKING WITH / EXAMPLES OF JSON:</h3>
+1. <b style="color:Tomato;">JSON.simple</b><br><br>
+<button type="button" class="collapsible"><b>Code Snippet : Convert JSON Object to String</b></button>
+<div class="content">
+    import org.json.simple.*;
+
+    class JsonEncodeDemo
+    {
+    &emsp;public static void main(String[] args)
+    &emsp;{
+    &emsp;&emsp;JSONObject exampleObj = new JSONObject();
+
+    &emsp;&emsp;exampleObj.put("name", "MyName");
+    &emsp;&emsp;exampleObj.put("account_num", new Integer(64167));
+    &emsp;&emsp;exampleObj.put("balance_amt", new Double(20123.21));
+    &emsp;&emsp;exampleObj.put("is_savings", new Boolean(true));
+
+    &emsp;&emsp;System.out.print(exampleObj);
+    &emsp;}
+    }
+
+</div><br><br><br>
+<button type="button" class="collapsible"><b>Code Snippet : Read JSON object from String</b></button>
+<div class="content">
+    import org.json.simple.*;
+    import org.json.simple.parser.*;
+
+    class JsonDecodeDemo
+    {
+    &emsp;public static void main(String[] args)
+    &emsp;{
+    &emsp;&emsp;JSONParser parser = new JSONParser();
+    &emsp;&emsp;String exampleStr = "{\"avail_laptop\":[" +
+    &emsp;&emsp;"{\"name\":\"MAC\",\"cost\":20500.00,\"refurb\":true }," +
+    &emsp;&emsp;"{\"name\":\"DELL\",\"cost\":15500.00,\"refurb\":false}" +
+    &emsp;&emsp;"]}";
+
+    &emsp;&emsp;try{
+    &emsp;&emsp;&emsp;Object obj = parser.parse(exampleStr);
+    &emsp;&emsp;&emsp;JSONObject jsonObj =  (JSONObject) obj;
+    &emsp;&emsp;&emsp;JSONArray jsonArray = (JSONArray) jsonObj.get("avail_laptop");
+
+    &emsp;&emsp;&emsp;// Display MAC Details
+    &emsp;&emsp;&emsp;System.out.println(" MAC Details");
+    &emsp;&emsp;&emsp;System.out.println("Laptop Name = " + jsonArray[0].get("name"));
+    &emsp;&emsp;&emsp;System.out.println("Laptop Cost = " + jsonArray[0].get("cost"));
+    &emsp;&emsp;&emsp;System.out.println("Laptop refurbished? = " + jsonArray[0].get("refurb"));
+
+    &emsp;&emsp;&emsp;// Display DELL Details
+    &emsp;&emsp;&emsp;System.out.println(" DELL Details");
+    &emsp;&emsp;&emsp;JSONObject dellObj = (JSONObject) jsonArray[1];
+    &emsp;&emsp;&emsp;System.out.println("Laptop Name = " + dellObj.get("name"));
+    &emsp;&emsp;&emsp;System.out.println("Laptop Cost = " + dellObj.get("cost"));
+    &emsp;&emsp;&emsp;System.out.println("Laptop refurbished? = " + dellObj.get("refurb"));
+
+    &emsp;&emsp;} catch(ParseException e){
+    &emsp;&emsp;&emsp;// Your logic for exception
+    &emsp;&emsp;&emsp;System.out.println("position: " + e.getPosition());
+    &emsp;&emsp;&emsp;System.out.println(e);
+    &emsp;&emsp;}
+    }
+
+</div><br>
+
+<br><br>
+2. <b style="color:Tomato;">Jackson Core</b><br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet : Convert JSON Object to String</b></button>
+<div class="content">
+    import com.fasterxml.jackson.databind.*;
+
+    public class JacksonDemo
+    {
+    &emsp;public static void main(String[] args)
+    &emsp;{
+    &emsp;&emsp;ObjectMapper objectMapper = new ObjectMapper();
+    &emsp;&emsp;HashMap&lt;String, Object&gt; exampleObj = new HashMap&lt;&gt;();
+
+    &emsp;&emsp;exampleObj.put("name", "MyName");
+    &emsp;&emsp;exampleObj.put("account_num", new Integer(64167));
+    &emsp;&emsp;exampleObj.put("balance_amt", new Double(20123.21));
+    &emsp;&emsp;exampleObj.put("is_savings", new Boolean(true));
+
+    &emsp;&emsp;try
+    &emsp;&emsp;{
+    &emsp;&emsp;&emsp;//Convert Map to JSON
+    &emsp;&emsp;&emsp;String json = mapper.writeValueAsString(exampleObj);
+
+    &emsp;&emsp;&emsp;//Print JSON output
+    &emsp;&emsp;&emsp;System.out.println(json);
+
+    &emsp;&emsp;} catch(ParseException e){
+    &emsp;&emsp;&emsp;// Your logic for exception
+    &emsp;&emsp;&emsp;System.out.println("position: " + e.getPosition());
+    &emsp;&emsp;&emsp;System.out.println(e);
+    &emsp;&emsp;}
+    &emsp;}
+    }
+
+</div><br><br><br>
+<button type="button" class="collapsible"><b>Code Snippet : Read JSON object from String</b></button>
+<div class="content">
+    import com.fasterxml.jackson.databind.*;
+
+    class JacksonDemo
+    {
+    &emsp;public static void main(String[] args)
+    &emsp;{
+    &emsp;&emsp;ObjectMapper objectMapper = new ObjectMapper();
+    &emsp;&emsp;String exampleStr = "{\"avail_laptop\":[" +
+    &emsp;&emsp;"{\"name\":\"MAC\",\"cost\":20500.00,\"refurb\":true }," +
+    &emsp;&emsp;"{\"name\":\"DELL\",\"cost\":15500.00,\"refurb\":false}" +
+    &emsp;&emsp;"]}";
+
+    &emsp;&emsp;try{
+    &emsp;&emsp;&emsp;JsonNode availLaptop = objectMapper.readTree(exampleStr);
+    &emsp;&emsp;&emsp;Iterator&lt;JsonNode&gt; iterator = availLaptop.elements();
+
+    &emsp;&emsp;&emsp;while (iterator.hasNext()) {
+
+    &emsp;&emsp;&emsp;&emsp;JsonNode laptopDetails = iterator.next();
+
+    &emsp;&emsp;&emsp;&emsp;System.out.println(" Laptop Details");
+    &emsp;&emsp;&emsp;&emsp;System.out.println("Laptop Name = " + laptopDetails.path("name"));
+    &emsp;&emsp;&emsp;&emsp;System.out.println("Laptop Cost = " + laptopDetails.path("cost"));
+    &emsp;&emsp;&emsp;&emsp;System.out.println("Laptop refurbished? = " + laptopDetails.path("refurb"));
+
+    &emsp;&emsp;&emsp;]
+
+    &emsp;&emsp;} catch(ParseException e){
+    &emsp;&emsp;&emsp;// Your logic for exception
+    &emsp;&emsp;&emsp;System.out.println("position: " + e.getPosition());
+    &emsp;&emsp;&emsp;System.out.println(e);
+    &emsp;&emsp;}
+    }
+
+</div><br>
+<br><br>
+3. <b style="color:Tomato;">GSON</b><br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet : Convert JSON Object to String</b></button>
+<div class="content">
+    import com.google.gson.*;
+
+    public class GsonDemo
+    {
+    &emsp;public static void main(String[] args)
+    &emsp;{
+    &emsp;&emsp;Gson gson = new Gson();
+    &emsp;&emsp;HashMap&lt;String, Object&gt; exampleObj = new HashMap&lt;&gt;();
+
+    &emsp;&emsp;exampleObj.put("name", "MyName");
+    &emsp;&emsp;exampleObj.put("account_num", new Integer(64167));
+    &emsp;&emsp;exampleObj.put("balance_amt", new Double(20123.21));
+    &emsp;&emsp;exampleObj.put("is_savings", new Boolean(true));
+
+    &emsp;&emsp;try
+    &emsp;&emsp;{
+    &emsp;&emsp;&emsp;//Convert Map to JSON
+    &emsp;&emsp;&emsp;String json = gson.toJson(exampleObj);
+
+    &emsp;&emsp;&emsp;//Print JSON output
+    &emsp;&emsp;&emsp;System.out.println(json);
+
+    &emsp;&emsp;} catch(ParseException e){
+    &emsp;&emsp;&emsp;// Your logic for exception
+    &emsp;&emsp;&emsp;System.out.println("position: " + e.getPosition());
+    &emsp;&emsp;&emsp;System.out.println(e);
+    &emsp;&emsp;}
+    &emsp;}
+    }
+
+</div><br>
+
+<br><br>
+<button type="button" class="collapsible"><b>Code Snippet : Read JSON object from String</b></button>
+<div class="content">
+    import com.google.gson.*;
+
+    class GsonDemo
+    {
+    &emsp;public static void main(String[] args)
+    &emsp;{
+    &emsp;&emsp;String exampleStr = "{\"avail_laptop\":[" +
+    &emsp;&emsp;"{\"name\":\"MAC\",\"cost\":20500.00,\"refurb\":true }," +
+    &emsp;&emsp;"{\"name\":\"DELL\",\"cost\":15500.00,\"refurb\":false}" +
+    &emsp;&emsp;"]}";
+
+    &emsp;&emsp;try{
+    &emsp;&emsp;&emsp;JsonObject exampleObj = new Gson().fromJson(exampleStr, JsonObject.class);
+    &emsp;&emsp;&emsp;JsonArray laptopDetails = exampleObj.getAsJsonArray("avail_laptop");
+
+    &emsp;&emsp;&emsp;while (JsonObject laptop : JsonArray) {
+
+    &emsp;&emsp;&emsp;&emsp;System.out.println(" Laptop Details");
+    &emsp;&emsp;&emsp;&emsp;System.out.println("Laptop Name = " + laptop.get("name"));
+    &emsp;&emsp;&emsp;&emsp;System.out.println("Laptop Cost = " + laptop.get("cost"));
+    &emsp;&emsp;&emsp;&emsp;System.out.println("Laptop refurbished? = " + laptop.get("refurb"));
+
+    &emsp;&emsp;&emsp;]
+
+    &emsp;&emsp;} catch(ParseException e){
+    &emsp;&emsp;&emsp;// Your logic for exception
+    &emsp;&emsp;&emsp;System.out.println("position: " + e.getPosition());
+    &emsp;&emsp;&emsp;System.out.println(e);
+    &emsp;&emsp;}
+    }
+
+</div><br>
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

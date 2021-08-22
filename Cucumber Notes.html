@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+th {
+  background-color: #A9A9A9;
+}
+
+table, th, td {
+  border: 1px solid black;
+  text-align: left;
+}
+
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>Cucumber Notes</h1>
+    <br>
+</div>
+<br>
+<br>
+Test-Driven Development(TDD) : Practice implemented from Developer's / QA's perspective.<br><br>
+Behaviour-Driven Development(BDD) : Addresses the gap between Business Analysts/Team and Engineering Team.<br>
+<br>
+<table width=100%>
+    <tr>
+        <th>TDD</th>
+        <th>BDD</th>
+    </tr>
+    <tr>
+        <td>Approach : Build the product in right way</td>
+        <td>Approach : Build the right product
+        </td>
+    </tr>
+    <tr>
+        <td>Tests are written to cover the functionality</td>
+        <td>Whole application/User journey is considered</td>
+    </tr>
+    <tr>
+        <td>Mostly added by QAs or Developers</td>
+        <td>Scenarios can be added by any one including the Stake Holders</td>
+    </tr>
+</table>
+<br>
+Cucumber is a tool that supports BDD. Here, the executable specifications are written in plain text called Gherkin (set of grammar rules). Gherkin files are stored with .feature extension.<br>
+<br>
+Specifications consists of multiple scenarios, each scenario is list of steps. Each step talks about the action to be performed on it.<br>
+<br>
+Step definition helps Gherkins steps to connect to programming code. Step definition carries out the action mentioned in the step.<br>
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    @When("^User Login$")
+    public void user_login_pressed() throws Throwable {
+    &emsp;driver.findElement(By.xpath(".//*[@id='login']")).click();
+    }
+
+</div><br>
+
+<br>
+Gherkin uses keywords to give the structure and meaning to the executable specifications. Following are the keywords:<br>
+1. <b>Feature</b><br>
+2. <b>Example (or Scenario)</b><br>
+3. <b>Given, When, Then, And, But for steps (or *)</b><br>
+4. <b>Background</b><br>
+5. <b>Scenario Outline (or Scenario Template)</b><br>
+6. <b>Examples (or Scenarios)</b><br>
+7. <b>Rule</b><br>
+<br>
+There are a few secondary keywords as well:<br>
+1. <b>"""</b> (Doc Strings)<br>
+2. <b>|</b> (Data Tables)<br>
+3. <b>@</b> (Tags)<br>
+4. <b>#</b> (Comments)<br>
+<br>
+Either spaces or tabs may be used for indentation. The recommended indentation level is two spaces.<br>
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    Feature: Is prime number?
+
+    &emsp;# This example checks whether the number is prime or not
+    &emsp;Scenario: Check whether 27 is prime number or not
+    &nbsp;&emsp;Given start the Prime Checker
+    &nbsp;&emsp;When input value is 27
+    &nbsp;&emsp;Then entered number is a prime number
+
+    &emsp;Scenario: Check whether 25 is prime number or not
+    &nbsp;&emsp;Given start the Prime Checker
+    &nbsp;&emsp;When input value is 25
+    &nbsp;&emsp;Then entered number is not a prime number
+
+</div><br>
+
+<br>Here, after keyword each statement is matched to a code block called Step Definition.<br>
+<br>
+1. <b style="color:Tomato;">Feature:</b><br>
+- To group related scenarios.<br>
+- Provides a high-level description of a software feature.<br>
+- Should always be the First keyword in the document. Description is optional.<br>
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    Feature: Is prime number?
+
+    &emsp;Prime numbers are special numbers, greater than 1, that have exactly two factors, themselves and 1.
+    &emsp;19 is a prime number. It can only be divided by 1 and 19.
+    &emsp;The prime numbers below 20 are: 2, 3, 5, 7, 11, 13, 17, 19.
+
+</div><br>
+
+<br>
+2. <b style="color:Tomato;">Example:</b><br>
+- The keyword Scenario is a synonym of the keyword Example.<br>
+- Collection of steps(actions to be carried out). Recommended to have not more than 5 steps.<br>
+- Pattern reference : Describe an initial context (Given steps), Describe an event (When steps) and Describe an expected outcome (Then steps).<br>
+<br>
+3. <b style="color:Tomato;">Steps:</b><br>
+- Each step starts with Given, When, Then, And, or But.<br>
+- In Sequence, one at a time, steps are executed in a scenario. During execution, the step definition is searched.<br>
+- Keywords are not taken into account when looking for a step definition.<br>
+<br>
+&emsp;> <b>Given</b> : Puts the system in a known state before the user (or external system) starts interacting with the system (in further steps).<br>
+&emsp;> <b>When</b> : To describe an event, or an action. This step is interacting with the system, or it can be an event triggered by another system.<br>
+&emsp;> <b>Then</b> : To describe an expected outcome, or result. This is our Assertion step.<br>
+&emsp;> <b>And, But</b> : We use these keywords If you have successive GivenÃ¢â‚¬â„¢s, WhenÃ¢â‚¬â„¢s, or ThenÃ¢â‚¬â„¢s.<br>
+&emsp;> <b>*</b> : Helpful when you have some steps that are effectively a list of things.<br>
+<br>
+4. <b style="color:Tomato;">Background:</b><br>
+- A Background allows you to add some context to the scenarios that follow it.<br>
+- It can contain one or more Given steps, which are run before each scenario.<br>
+- A Background is placed before the first Scenario/Example, at the same level of indentation.<br>
+<br>
+5. <b style="color:Tomato;">Scenario outline and Examples:</b><br>
+- The Scenario Outline keyword can be used to run the same Scenario multiple times, with different combinations of values.<br>
+- A Scenario Outline must contain an Examples keyword.<br>
+- The steps can use &lt;&gt; delimited parameters that reference headers in the examples table. Cucumber will replace these parameters with values from the table before it tries to match the step against a step definition.<br>
+<br><br>
+<button type="button" class="collapsible"><b>Example Snippet</b></button>
+<div class="content">
+
+    &emsp;Scenario Outline: Is prime number?
+    &nbsp;&emsp;Given start the Prime Checker
+    &nbsp;&emsp;When input value is &lt;input&gt;
+    &nbsp;&emsp;Then entered number is a &lt;result&gt; number
+
+    &emsp;Examples:
+    &nbsp;&emsp;| input |  result  |
+    &nbsp;&emsp;|    27 |   prime  |
+    &nbsp;&emsp;|    25 | not prime|
+
+</div><br>
+
+<br>
+Doc Strings are handy for passing a larger piece of text to a step definition.<br>
+<br>
+Data Tables are handy for passing a list of values to a step definition.<br>
+<br>
+Language header on the first line of a feature file tells Cucumber what spoken language to use - for example # language: fr for French. If you omit this header, Cucumber will default to English (en).<br>
+<br>
+<b>CucumberOptions for execution - </b> Using @CucumberOptions annotations in Runner Class, we can achieve few more customization.<br><br>
+1. <b style="color:Tomato;">Plugin</b> option : different formatting options for the output reports can be changed here.<br>
+- <b>plugin = {"pretty"}</b> : For additional colors and stack traces for errors.<br>
+- <b>plugin ={"html:target/html/"}</b> : Generates a HTML report at the mentioned location.<br>
+- <b>plugin = {"json:target/cucumber.json"}</b> : File contains all the information recorded in json format during the execution. This can be used later for any reporting enhancements.<br>
+- <b>plugin = {"junit:target/cucumberReport.xml"}</b> : File contains all the information recorded in xml format during the execution. This can be used later for any reporting enhancements.<br>
+plugin option allows any / all above entries can be used at the same time.<br>
+<br>
+2. <b style="color:Tomato;">dryRun</b> option : Checks whether corresponding Step definition exists or not for a step written in feature file. By default value is false.<br>
+<br>
+3. <b style="color:Tomato;">strict</b> option : If there is no stepDefinition present, should the testing be proceeded or not. By default value is true.<br><br>
+4. <b style="color:Tomato;">monochrome</b> option : Makes Console output of Cucumber execution more readable. By default value is false.<br><br>
+5. <b style="color:Tomato;">features</b> option : Cucumber checks the feature files in the mentioned directory.<br><br>
+6. <b style="color:Tomato;">glue</b> option : Similar to features option, Cucumber checks the StepDefinition files in the mentioned directory.<br><br>
+7. <b style="color:Tomato;">Snippets</b> option : Generates code snippets in Underscore style(SnippetType.UNDERSCORE) or CamelCase style(SnippetType.CAMELCASE). Default is Underscore style.<br><br>
+8. <b style="color:Tomato;">tags</b> option : Can be used when specifying what tests to run.<br>
+- <b>tags ={"@Regression"}</b> : Runs only tests which has Regression.<br>
+- <b>tags ={"@Regression","@Functional"}</b> : Runs list of tests that needs to be executed.<br>
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+</body>
+</html>

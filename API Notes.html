@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>API Notes</h1>
+    <br>
+</div>
+<br>
+To Communicate between 2 different Software, we need a mediator, and the mediator is called Application Programming Interface.  <br>
+<br>
+Let's take one easy example, Imagine a person say Adam wants to order food in Restaurant. <br>
+Adam orders the food by calling a waiter. <br>
+The waiter takes the order to Kitchen. <br>
+The menu is prepared in Kitchen. The waiter brings the ordered food and served it to Adam.<br>
+<br>
+Application Programming Interface is responsible for taking your request and giving it to Server.<br>
+After processing, the response is shared/returned to you.<br>
+<br>
+<b>About Web Service:</b> <br>
+In simple words, If the communication between 2 different Software happens over the Web/Network, we can call this as Web Service.<br>
+Web Service is basically, Providing Service Over Network/Web.<br>
+Service Requester is termed as Client/Consumer.<br>
+Service Provider is termed as Server/Producer.<br>
+Client requests data to Server over Web, Server responds data to Client over Web. <br>
+Service should follow the Web Protocol/Standard while performing information exchange.<br>
+Service should allow interoperability <br>
+<br>
+<b>Example:</b> <br>
+The requester can request from any type of OS and the Provider can respond from any type of OS, which should not influence data that is being processed.<br>
+<br>
+<img src="./images/webServiceImage.jpg" width=100% class="center"><br>
+<br>
+<b>About Authentication and Authorization:</b> <br>
+The server has to identify whether the requester is Valid or not? and Whether the requester has permission or not? This is where the Authentication and Authorization come into the picture. To keep is short, <br>
+1. Authentication Checks whether the User is a Registered User or Not.<br>
+2. Authorization Checks whether the User has permission to access the Resource or not.<br>
+<br>
+<b>About REST:</b>  <br>
+REpresentational State Transfer is an architectural style for providing standards between computer systems on the web, making it easy for the systems to communicate with each other.<br>
+In this architecture style, we deal with Resources. The resource can be any object, document, or thing that you may need to store or retrieve from another system.<br>
+Each Resource is identified via an Endpoint. In REST, operations are performed on Resource rather than Interface.<br>
+Here Server implementation and Client implementation are separate and the Requests are stateless - If the different client sends the same request, the server performs the requested action and different clients receive the same response.<br>
+<br>
+<b>About Client-Server Communication and HTTP Verbs:</b>  <br>
+The data exchange between 2 software involves the Creation / Retrieval / Modification of the resource. The client sends a request to create/retrieve/modify the resource and the Server responds to the request.<br>
+<br>
+<b>A request generally consists of:</b><br>
+1. <b style="color:Tomato;">HTTP VERB</b> - Operation to be performed on the resource (POST/PUT/GET/DELETE)<br>
+2. <b style="color:Tomato;">Path</b> - Resource URI on which the operation to be performed.<br>
+3. <b style="color:Tomato;">Version</b> - HTTP version used, typically its HTTP/1.1<br>
+4. <b style="color:Tomato;">Request Header</b> - Additional information required for the request.<br>
+5. <b style="color:Tomato;">Request body</b> - Payload for the request which is optional<br>
+<br>
+<img src="./images/requestImage.jpg" width=50% class="center"><br>
+<br>
+<b>Few Header entries :</b><br>
+1. <b style="color:Tomato;">Authorization</b> - Basic Authentication or OAuth<br>
+2. <b style="color:Tomato;">Content-Type</b> - Alerts about the type of data that is being sent. Eg - text/plain application/json text/json<br>
+3. <b style="color:Tomato;">Accept-Type</b> - Different types of data that are agreed upon for exchange between Server and Client.<br>
+<br>
+<b>The response generally consists of:</b><br>
+1. <b style="color:Tomato;">Code</b> - Response code is the information about the success of the operation.<br>
+2. <b style="color:Tomato;">Version</b> - HTTP version used, typically its HTTP/1.1<br>
+3. <b style="color:Tomato;">Response Header</b> - Additional information added for the response.<br>
+4. <b style="color:Tomato;">Response Body</b> - Payload returned by the Server.<br>
+<br>
+<img src="./images/responseImage.jpg" width=50% class="center">
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

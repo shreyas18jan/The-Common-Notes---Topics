@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>Ant Notes</h1>
+    <br>
+</div>
+<br>
+ANT stands for Another Neat Tool. It is a Java-based build tool from Apache.<br>
+<br>
+<b>A developer spends a substantial amount of time doing mundane tasks like build and deployment that include:</b><br>
+- Compiling the code<br>
+- Packaging the binaries<br>
+- Deploying the binaries to the test server<br>
+- Testing the changes<br>
+- Copying the code from one location to another<br>
+<br>
+To automate and simplify the above tasks, Apache Ant is useful. It is an operating system build and deployment tool that can be executed from the command line.<br>
+<br>
+Ant's build file called build.xml should reside in the base directory of the project. However, there is no restriction on the file name or its location. You are free to use other file names or save the build file in some other location.<br>
+<br>
+<b>All build files require the project element and at least one target element.</b><br>
+<b>The XML element project has three attributes:</b><br>
+<b style="color:Tomato;">Name</b> - The Name of the project. (Optional)<br>
+<b style="color:Tomato;">default</b> - The default target for the build script. A project may contain any number of targets. This attribute specifies which target should be considered as the default. (Mandatory)<br>
+<b style="color:Tomato;">basedir</b> - The base directory (or) the root folder for the project. (Optional)<br>
+<br>
+<br>
+A target is a collection of tasks that you want to run as one unit. Targets can have dependencies on other targets. Dependencies are denoted using the depends attribute.<br>
+<br>
+<b>The target element has the following attributes:</b><br>
+<b style="color:Tomato;">name</b> - The name of the target (Required)<br>
+<b style="color:Tomato;">depends</b> - Comma separated list of all targets that this target depends on. (Optional)<br>
+<b style="color:Tomato;">description</b> - A short description of the target. (optional)<br>
+<b style="color:Tomato;">if</b> - Allows the execution of a target based on the trueness of a conditional attribute. (optional)<br>
+<b style="color:Tomato;">unless</b> - Adds the target to the dependency list of the specified Extension Point. An Extension Point is similar to a target, but it does not have any tasks. (Optional)<br>
+<br>
+<br>
+Ant uses the property element which allows you to specify properties. This allows the properties to be changed from one build to another, or from one environment to another.<br>
+<br>
+<b>By default, Ant provides the following predefined properties that can be used in the build file:</b><br>
+<b style="color:Tomato;">ant.file</b> - The full location of the build file.<br>
+<b style="color:Tomato;">ant.version</b> - The version of the Apache Ant installation.<br>
+<b style="color:Tomato;">basedir</b> - The basedir of the build, as specified in the basedir attribute of the project element.<br>
+<b style="color:Tomato;">ant.java.version</b> - The version of the JDK that is used by Ant.<br>
+<b style="color:Tomato;">ant.project.name</b> - The name of the project, as specified in the name attribute of the project element.<br>
+<b style="color:Tomato;">ant.project.default-target</b> - The default target of the current project.<br>
+<b style="color:Tomato;">ant.project.invoked-targets</b> - Comma separated list of the targets that were invoked in the current project.<br>
+<b style="color:Tomato;">ant.core.lib</b> - The full location of the Ant jar file.<br>
+<b style="color:Tomato;">ant.home</b> - The home directory of Ant installation.<br>
+<b style="color:Tomato;">ant.library.dir</b> - The home directory for Ant library files - typically ANT_HOME/lib folder.<br>
+<br>
+The user can define additional properties using the property element.<br>
+<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;?xml version="1.0"?&gt;
+    &lt;project name="Hello World Project" default="info"&gt;
+    &lt;property name="sitename" value="www.example.com"/&gt;
+    &lt;target name="info"&gt;
+    &lt;echo&gt;Apache Ant version is ${ant.version} - You are at ${sitename} &lt;/echo&gt;&lt;echo&gt;Apache Ant version is ${ant.version} - You are at ${sitename} &lt;/echo&gt;&lt;echo&gt;Apache Ant version is ${ant.version} - You are at ${sitename} &lt;/echo&gt;
+    &lt;/target&gt;
+    &lt;/project&gt;
+
+</div>
+<br>
+<br>
+<br>
+Setting properties directly in the build file is fine if you are working with a handful of properties. However, for a large project, it makes sense to store the properties in a separate property file. the property file is named build.properties and is placed alongside the build.xml file. The contents of the build property file are similar to the normal java property file. They contain one property per line. Each property is represented by a name and a value pair.<br>
+<br>
+<b>Ant provides a number of predefined data types / Services:</b>
+<br>
+<br>
+1. <b style="color:Tomato;">Fileset:</b><br>
+The fileset data type represents a collection of files. It is used as a filter to include or exclude files that match a particular pattern.<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;fileset dir="\${src}" casesensitive="yes"&gt;
+    &lt;include name="**/*.java"/&gt;
+    &lt;exclude name="**/*Stub*"/&gt;
+    &lt;/fileset&gt;
+
+</div>
+<br>
+<br>
+<br>
+2. <b style="color:Tomato;">Patternset:</b><br>
+A patternset is a pattern that allows to filter files or folders easily based on certain patterns.<br>
+<b>Patterns can be created using the following meta characters:</b><br>
+? - Matches one character only .<br>
+* - Matches zero or many characters.<br>
+** - Matches zero or many directories recursively.<br>
+<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;patternset id="java.files.without.stubs"&gt;
+    &lt;include name="src/**/*.java"/&gt;
+    &lt;exclude name="src/**/*Stub*"/&gt;
+    &lt;/patternset&gt;
+
+    The patternset can then be reused with a fileset
+    &lt;fileset dir="\${src}" casesensitive="yes"&gt;
+    &lt;patternset refid="java.files.without.stubs"/&gt;
+    &lt;/fileset&gt;
+
+</div>
+<br>
+<br>
+<br>
+3. <b style="color:Tomato;">Filelist:</b><br>
+<b>The filelist data type is similar to the fileset except the following differences:</b> <br>
+- filelist contains explicitly named lists of files and it does not support wild cards.<br>
+- filelist data type can be applied for existing or non-existing files.<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;filelist id="config.files" dir="\${webapp.src.folder}"&gt;
+    &lt;file name="config1.xml"/&gt;
+    &lt;file name="config2.xml"/&gt;
+    &lt;file name="web.xml"/&gt;
+    &lt;file name="config3.xml"/&gt;
+    &lt;/filelist&gt;
+
+</div>
+<br>
+<br>
+<br>
+4. <b style="color:Tomato;">Filterset:</b><br>
+Using a filterset data type along with the copy task, you can replace certain text in all files that matches the pattern with a replacement value.<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;copy todir="\${output.dir}"&gt;
+    &lt;fileset dir="\${releasenotes.dir}" includes="**/*.txt"/&gt;
+    &lt;filterset&gt;
+    &lt;filter token="VERSION" value="\${current.version}"/&gt;
+    &lt;/filterset&gt;
+    &lt;/copy&gt;
+
+</div>
+<br>
+<br>
+<br>
+5. <b style="color:Tomato;">Path:</b><br>
+The path data type is commonly used to represent a classpath. Entries in the path are separated using semicolons or colons.<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;path id="build.classpath.jar"&gt;
+    &lt;pathelement path="\${env.J2EE_HOME}/\${j2ee.jar}"/&gt;
+    &lt;fileset dir="lib"&gt;
+    &lt;include name="**/*.jar"/&gt;
+    &lt;/fileset&gt;
+    &lt;/path&gt;
+
+</div>
+<br>
+<br>
+<br>
+Documentation is must in any project. Documentation plays a great role in the maintenance of a project. Java makes documentation easier by the use of the inbuilt javadoc tool. Ant makes it even easier by generating the documentation on demand.<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet</b></button>
+<div class="content">
+    &lt;target name="generate-javadoc"&gt;
+    &lt;javadoc packagenames="faxapp.*" sourcepath="\${src.dir}" destdir="doc" version="true" windowtitle="Example Application"&gt;
+    &lt;doctitle&gt;&lt;![CDATA[= Example Application =]]&gt;&lt;/doctitle&gt;
+    &lt;bottom&gt;
+    &lt;![CDATA[Copyright 2019. All Rights Reserved.]]&gt;
+    &lt;/bottom&gt;
+    &lt;group title="util-packages" packages="exampleapp.util.*"/&gt;
+    &lt;group title="web-packages" packages="exampleapp.web.*"/&gt;
+    &lt;group title="data-packages" packages= "exampleapp.entity.*:exampleapp.dao.*"/&gt;
+    &lt;/javadoc&gt;
+    &lt;echo message="java doc has been generated!" /&gt;
+    &lt;/target&gt;
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

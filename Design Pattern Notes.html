@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {margin:0;}
+th {
+  background-color: #A9A9A9;
+}
+table, th, td {
+  border: 1px solid black;
+  text-align: left;
+}
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+.active:after {
+  content: "\2796";
+}
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+body {margin:0;}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>Design Pattern Notes</h1>
+    <br>
+</div>
+
+<ul>
+    <a href="#home">Intro</a></li><br>
+    <a href="#singleton">Singleton Pattern</a></li><br>
+    <a href="#builder">Builder Pattern</a></li><br>
+</ul>
+<p id="home" ></p>
+<div style="padding:20px;margin-top:30px;">
+    <p style="background-color: #008080;color: white;text-align: center;">Intro:</p>
+    - Represents Best practices to address general Design Problems in Object-Oriented programming.<br>
+    - Talks about the problem statement and how to solve the problem.<br>
+    <br>
+    <b>Popular Patterns are:</b><br>
+    1. Creational<br>
+    2. Structural<br>
+    3. Behavioral<br>
+    4. Functional<br>
+    5. Concurrency<br>
+    6. Architectural<br>
+    <br>
+</div>
+<div style="padding:20px;margin-top:30px;">
+    <p id="singleton" ></p>
+    <p style="background-color: #008080;color: white;text-align: center;">Singleton Pattern:</p>
+    <br>
+    - Focuses on Object creation mechanism. (Creational Design Pattern type)<br>
+    - Here the idea is to restrict the instantiation of a class to only one instance.<br>
+    - Suitable example would be Configuration Object or Logger Object. Creating multiple of these for single project is not a good practice.<br>
+    - Instantiation is restricted by making constructor as private and providing a global way to access the instance.<br>
+    <br>
+    <button type="button" class="collapsible"><b>Example Snippet</b></button>
+    <div class="content">
+        class ConfigManager
+        {
+        &emsp;private static ConfigManager configObj;
+
+        &emsp;private ConfigManager() {
+        &emsp;&emsp;// Config related management code comes here.
+        &emsp;}
+
+        &emsp;// Global way to access the object
+        &emsp;public static ConfigManager getInstance()
+        &emsp;{
+        &emsp;&emsp;// Code snippet that checks whether the object is already exists or not
+        &emsp;&emsp;if (configObj==null) {
+        &emsp;&emsp;&emsp;configObj = new ConfigManager();
+        &emsp;&emsp;}
+
+        &emsp;&emsp;return configObj;
+        &emsp;}
+        }
+
+    </div>
+    <br>
+    <br>
+    - To access the configObj, following code needs to be added:<br>
+    &emsp;<b style="color:Tomato;">ConfigManager configObj = ConfigManager.getInstance();</b><br>
+    - This above code is not yet ThreadSafe. To make it ThreadSafe, we need to make use of synchronized keyword for getInstance() method.<br>
+    <br>
+</div>
+
+<div style="padding:20px;margin-top:30px;">
+    <p id="builder" ></p>
+    <p style="background-color: #008080;color: white;text-align: center;">Build Pattern:</p>
+    <br>
+    - Focuses on Object creation mechanism. (Creational Design Pattern type)<br>
+    - Complex object creation happens step by step. Idea is to separate the construction of complex object from its representation.<br>
+    - Suitable example would be Stream Class in Java uses builder pattern approach.<br>
+    - Object creation should be generic, so that we can create different representation of same object.<br>
+    <br>
+    <button type="button" class="collapsible"><b>Example Snippet</b></button>
+    <div class="content">
+        <br>
+        public class GenericAPIBuilder {
+        &emsp;String url;
+        &emsp;String requestBody;
+        &emsp;String methodName;
+        &emsp;String headerDetails;
+        &emsp;String queryParams;
+
+        &emsp;public GenericAPIBuilder(){
+        &emsp;&emsp;url = "";
+        &emsp;&emsp;requestBody = "";
+        &emsp;&emsp;methodName = "";
+        &emsp;&emsp;headerDetails = "";
+        &emsp;&emsp;queryParams = "";
+        &emsp;}
+
+        &emsp;&emsp;public GenericAPIBuilder setUrl(String url) {
+        &emsp;&emsp;&emsp;this.url = url;
+        &emsp;&emsp;&emsp;return this;
+        &emsp;&emsp;}
+
+        &emsp;&emsp;public GenericAPIBuilder setRequestBody(String requestBody) {
+        &emsp;&emsp;&emsp;this.requestBody = requestBody;
+        &emsp;&emsp;&emsp;return this;
+        &emsp;&emsp;}
+
+        &emsp;&emsp;public GenericAPIBuilder setMethodName(String methodName) {
+        &emsp;&emsp;&emsp;this.methodName = methodName;
+        &emsp;&emsp;&emsp;return this;
+        &emsp;&emsp;}
+
+        &emsp;&emsp;public GenericAPIBuilder setHeaderDetails(String headerDetails) {
+        &emsp;&emsp;&emsp;this.headerDetails = headerDetails;
+        &emsp;&emsp;&emsp;return this;
+        &emsp;&emsp;}
+
+        &emsp;&emsp;public GenericAPIBuilder setQueryParams(String queryParams) {
+        &emsp;&emsp;&emsp;this.queryParams = queryParams;
+        &emsp;&emsp;&emsp;return this;
+        &emsp;&emsp;}
+
+        &emsp;&emsp;@Override
+        &emsp;&emsp;public String toString() {
+        &emsp;&emsp;String isQueryParamAvail = (this.queryParams.isEmpty())? "" : "?";
+        &emsp;&emsp;String urlContent = this.methodName.toUpperCase()
+        &emsp;&emsp;&emsp;&emsp;+ " "
+        &emsp;&emsp;&emsp;&emsp;+ this.url
+        &emsp;&emsp;&emsp;&emsp;+ isQueryParamAvail
+        &emsp;&emsp;&emsp;&emsp;+ this.queryParams
+        &emsp;&emsp;&emsp;&emsp;+ "\n"
+        &emsp;&emsp;&emsp;&emsp;+ this.requestBody;
+        &emsp;&emsp;return urlContent;
+        &emsp;}
+
+        &emsp;public static void main(String args[]) {
+        &emsp;&emsp;GenericAPIBuilder buildPostRequest =
+        &emsp;&emsp;&emsp;&emsp;new GenericAPIBuilder().setUrl("http://www.example.com/add_user")
+        &emsp;&emsp;&emsp;&emsp;.setMethodName("POST")
+        &emsp;&emsp;&emsp;&emsp;.setRequestBody("{\"username\": \"User1\"}")
+        &emsp;&emsp;&emsp;&emsp;.setHeaderDetails("content-type: application/json");
+
+        &emsp;&emsp;System.out.println("\nObject - 1 : POST API");
+        &emsp;&emsp;System.out.println(buildPostRequest.toString());
+        &emsp;&emsp;
+
+        &emsp;&emsp;GenericAPIBuilder buildGetRequest =
+        &emsp;&emsp;&emsp;&emsp;new GenericAPIBuilder().setUrl("http://www.example.com/get_user")
+        &emsp;&emsp;&emsp;&emsp;.setMethodName("GET")
+        &emsp;&emsp;&emsp;&emsp;.setQueryParams("user=User1")
+        &emsp;&emsp;&emsp;&emsp;.setHeaderDetails("content-type: application/json");
+        &emsp;&emsp;
+        &emsp;&emsp;System.out.println("\nObject - 2 : GET API");
+        &emsp;&emsp;System.out.println(buildGetRequest.toString());
+        &emsp;}
+        }
+
+    </div>
+    <br>
+</div>
+<p></p>
+<br>
+<br>
+<br>
+<br>
+</body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+</html>

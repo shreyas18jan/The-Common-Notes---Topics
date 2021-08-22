@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>JMeter Notes</h1>
+    <br>
+</div>
+<br>
+JMeter is a software that can perform load test, performance-oriented business (functional) test, regression test, etc., on different protocols or technologies. <br>
+<br>
+JMeter simulates a group of users sending requests to a target server, and returns statistics that show the performance/functionality of the target server/application via tables, graphs, etc. <br>
+<br>
+Applications that can be tested using JMeter are<br>
+1. Websites Web services both - REST and SOAP <br>
+2. Databases(JDBC) <br>
+3. Shell scripts<br>
+4. FTP <br>
+5. LDAP <br>
+6. TCP <br>
+7. SMTP, POP3, IMAP<br>
+<br>
+A Test Plan can be viewed as a container for running tests. It defines what to test and how to go about it.<br>
+A complete test plan consists of one or more elements such as thread groups, logic controllers, sample-generating controllers, listeners, timers, assertions, and configuration elements.<br>
+A test plan must have at least one thread group.<br>
+<br>
+<b>Jmeter contains two nodes:</b>  <br>
+1. <b>Test Plan node:</b> It is where the real test plan is kept.  <br>
+2. <b>Workbench node:</b> It simply provides a place to temporarily store test elements while not in use, for copy/paste purposes. When you save your test plan, Workbench items are not saved with it. <br>
+<br>
+A Test Plan comprises at least one Thread Group.<br>
+Within each Thread Group, we may place a combination of one or more of other elements: Sampler, Logic Controller, Configuration Element, Listener, and Timer.<br>
+<br>
+Each Sampler can be preceded by one or more Pre-processor element, followed by a Post-processor element, and/or Assertion element.<br>
+<br>
+JMeter has two types of Controllers: Samplers and Logic Controllers. <br>
+<br>
+Samplers allow JMeter to send specific types of requests to a server.<br>
+They simulate a user request for a page from the target server.<br>
+<br>
+<b>Example:</b> you can add an HTTP Request sampler if you need to perform a POST, GET, or DELETE on HTTP service. <br>
+<br>
+<b>Some useful samplers are:</b> <br>
+1. HTTP Request <br>
+2. FTP Request <br>
+3. JDBC Request <br>
+4. Java Request <br>
+5. SOAP/XML Request <br>
+6. RPC Requests <br>
+<br>Logic Controllers let you control the order of processing of Samplers in a Thread.<br>
+Logic controllers can change the order of a request coming from any of their child elements.<br>
+<br>
+<b>Example:</b> ForEach Controller, While Controller, Loop Controller, IF Controller, Run Time Controller, Interleave Controller, Throughput Controller, and Run Once Controller. <br>
+<br>
+A Test Fragment is a special type of element placed at the same level as the Thread Group element.<br>
+It is distinguished from a Thread Group in that it is not executed unless it is referenced by either a Module Controller or an Include_Controller.<br>
+This element is purely for code re-use within Test Plans.<br>
+<br>
+Listeners let you view the results of Samplers in the form of tables, graphs, trees, or simple text in some log files.<br>
+They provide visual access to the data gathered by JMeter about the test cases as a Sampler component of JMeter is executed.<br>
+<br>
+Listeners can be added anywhere in the test, including directly under the test plan.<br>
+They will collect data only from elements at or below their level. (View Results Tree - HTTP/S)<br>
+<br>
+JMeter thread sends requests without pausing between each sampler.<br>
+This may not be what you want. You can add a timer element that allows you to define a period to wait between each request. <br>
+<br>
+Assertions allow you to include some validation tests on the response to your request made using a Sampler.<br>
+Using assertions you can prove that your application is returning the correct data.<br>
+JMeter highlights when an assertion fails. <br>
+<br>
+Configuration Elements allow you to create defaults and variables to be used by Samplers.<br>
+They are used to add or modify requests made by Samplers.<br>
+They are executed at the start of the scope of which they are part, before any Samplers that are located in the same scope.<br>
+Therefore, a Configuration Element is accessed only from inside the branch where it is placed.<br>
+<br>
+A pre-processor element is something that runs just before a sampler executes.<br>
+They are often used to modify the settings of a Sample Request just before it runs, or to update variables that are not extracted from response text.<br>
+<br>
+A post-processor executes after a sampler finishes its execution.<br>
+This element is most often used to process the response data.<br>
+<b>Example:</b> to retrieve a particular value for later use<br>
+<br>
+Listeners provide access to the information JMeter gathers about the test cases while JMeter runs.<br>
+<b>The results or information gathered by listeners can be shown in the form of:</b> <br>
+1. tree <br>
+2. tables <br>
+3. graphs <br>
+4. log file <br>
+<br>
+JMeter creates results of a test run as JMeter Text Logs (JTL).<br>
+These are normally called JTL files, as that is the default extension - but any extension can be used.<br>
+If multiple tests are run using the same output file name, then JMeter automatically appends new data at the end of the file.<br>
+The listener can record results to a file but not to the UI.<br>
+It is meant to provide an efficient means of recording data by eliminating GUI overhead.<br>
+<br>
+Correlation is the most important aspect of scripting in JMeter.<br>
+It includes fetching dynamic data from preceding requests/calls and passing them to the subsequent requests as parameters. <br>
+<br>
+At the beginning of the load test of an application instead of putting all the users live, we slowly ramp up the number of users in order to study their effect on the application's performance.<br>
+In JMeter, the ramp-up period defines the time period within which all the specified users get in running state.<br>
+<br>
+Configuration elements are used for customizing the sampler requests e.g. CSV Data Set Config can be used for parameterizing the sampler requests with values fetched from an external CSV file.<br>
+<br>
+<b>Command:</b><br>
+<b style="color:Tomato;">jmeter -n -t test.jmx -l test.jtl</b><br>
+<br>
+where, n specifies that JMeter will run in non-GUI mode -t for test script file -l for jtl file having each sample's result<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

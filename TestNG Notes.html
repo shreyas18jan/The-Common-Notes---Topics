@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>TestNG Notes</h1>
+    <br>
+</div>
+<br>
+
+Testing is the process of checking the functionality of an application to ensure it works as per requirements.<br>
+<br>
+JUnit has driven developers to understand the usefulness of tests, especially of unit tests.<br>
+<br>
+<b>JUnit, at the same time, has some shortcomings as well, which are listed below:</b><br>
+1. Initially designed to enable unit testing only, now used for all kinds of testing.<br>
+2. Cannot do dependency testing.<br>
+3. Poor configuration control (setUp/tearDown).<br>
+4. Intrusive (forces you to extend classes and name your methods a certain way).<br>
+5. Static programming model (forces you to recompile unnecessarily).<br>
+6. The management of different suites of tests in complex projects can be very tricky.<br>
+<br>
+TestNG is a testing framework inspired from JUnit and NUnit, but introducing some new functionality that makes it more powerful and easier to use.<br>
+<br>
+TestNG is an open source automated testing framework; where NG means NextGeneration. TestNG is similar to JUnit (especially JUnit 4), but it is not a JUnit's extension.<br>
+<br>
+<b>TestNG Features :</b><br>
+1. Supports annotations.<br>
+2. TestNG uses more Java and OO features.<br>
+3. Supports testing integrated classes (e.g., by default, no need to create a new test class instance for every test method).<br>
+4. Separates compile-time test code from run-time configuration/data info.<br>
+5. Flexible runtime configuration.<br>
+6. Introduces 'test groups'. Once you have compiled your tests, you can just ask TestNG to run all the "front-end" tests, or "fast", "slow", "database" tests, etc.<br>
+7. Supports Dependent test methods, parallel testing, load testing, and partial failure.<br>
+8. Flexible plug-in API.<br>
+9. Support for multi-threaded testing.<br>
+<br>
+Create a java class file named TestNGSimpleTest at C:\>TestNG_WORKSPACE
+<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet in Java</b></button>
+<div class="content">
+    import org.testng.annotations.Test;
+    import static org.testng.Assert.assertEquals;
+
+    public class TestNGSimpleTest {
+    @Test
+    public void testCheck() {
+    String str = "TestNG is working fine";
+    assertEquals("TestNG is working fine", str);
+    }
+    }
+
+</div>
+<br>
+<br>
+<b>TestNG can be invoked in several different ways:</b><br>
+- With a testng.xml file.<br>
+- With ANT.<br>
+- From the command line.<br>
+<br>
+Invoke using the testng.xml file<br>
+<br>
+<b>Writing a test in TestNG basically involves the following steps:</b><br>
+1. Write the business logic of your test and insert TestNG annotations in your code.<br>
+2. Add the information about your test (e.g. the class name, the groups you wish to run, etc.) in a testng.xml file or in build.xml.<br>
+3. Run TestNG.<br>
+<br>
+<br>
+<b>Details of xml file:</b><br>
+1. A suite is represented by one XML file. It can contain one or more tests and is defined by the suite tag.<br>
+2. test tag represents one test and can contain one or more TestNG classes.<br>
+3. class tag represents a TestNG class. It is a Java class that contains at least one TestNG annotation. It can contain one or more test methods.<br>
+<br>
+TestNG creates a very nice HTML report in a folder called test-output that is automatically created in the current directory.<br>
+<br>
+<br>
+<b>List of annotations that TestNG supports:</b><br>
+1.<b style="color:Tomato;">@BeforeSuite</b> - The annotated method will be run only once before all tests in this suite have run.<br>
+2.<b style="color:Tomato;">@AfterSuite</b> - The annotated method will be run only once after all tests in this suite have run.<br>
+3.<b style="color:Tomato;">@BeforeClass</b> - The annotated method will be run only once before the first test method in the current class is invoked.<br>
+4.<b style="color:Tomato;">@AfterClass</b> - The annotated method will be run only once after all the test methods in the current class have run.<br>
+5.<b style="color:Tomato;">@BeforeTest</b> - The annotated method will be run before any test method belonging to the classes inside the test tag is run.<br>
+6.<b style="color:Tomato;">@AfterTest</b> - The annotated method will be run after all the test methods belonging to the classes inside the test tag have run.<br>
+7.<b style="color:Tomato;">@BeforeGroups</b> - The list of groups that this configuration method will run before. This method is guaranteed to run shortly before the first test method that belongs to any of these groups is invoked.<br>
+8.<b style="color:Tomato;">@AfterGroups</b> - The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked.<br>
+9.<b style="color:Tomato;">@BeforeMethod</b> - The annotated method will be run before each test method.<br>
+10.<b style="color:Tomato;">@AfterMethod</b> - The annotated method will be run after each test method.<br>
+11.<b style="color:Tomato;">@DataProvider</b> - Marks a method as supplying data for a test method. The annotated method must return an Object[ ][ ], where each Object[ ] can be assigned the parameter list of the test method. The @Test method that wants to receive data from this DataProvider needs to use a dataProvider name equals to the name of this annotation.<br>
+12.<b style="color:Tomato;">@Factory</b> - Marks a method as a factory that returns objects that will be used by TestNG as Test classes. The method must return Object[ ].<br>
+13.<b style="color:Tomato;">@Listeners</b> - Defines listeners on a test class.<br>
+14.<b style="color:Tomato;">@Parameters</b> - Describes how to pass parameters to a @Test method.<br>
+15.<b style="color:Tomato;">@Test</b> - Marks a class or a method as a part of the test.<br>
+<br>
+<br>
+<b>The execution procedure is as follows:</b><br>
+1. First of all, beforeSuite() method is executed only once.<br>
+2. Lastly, the afterSuite() method executes only once.<br>
+3. Even the methods beforeTest(), beforeClass(), afterClass(), and afterTest() methods are executed only once.<br>
+4. beforeMethod() method executes for each test case but before executing the test case.<br>
+5. afterMethod() method executes for each test case but after executing the test case.<br>
+6. In between beforeMethod() and afterMethod(), each test case executes.<br>
+<br>
+A test suite is a collection of test cases intended to test a behavior or a set of behaviors of software program.<br>
+<br>
+suite tag is the root tag of your testng.xml.<br>
+<br>
+<br>
+<b>Lists all the legal attributes that suite accepts:</b><br>
+<b>name</b> - The name of this suite. It is a mandatory attribute.<br>
+<b>verbose</b> - The level or verbosity for this run.<br>
+<b>parallel</b> - Whether TestNG should run different threads to run this suite.<br>
+<b>thread-count</b> - The number of threads to use, if parallel mode is enabled (ignored other-wise).<br>
+<b>annotations</b> - The type of annotations you are using in your tests.<br>
+<b>time-out</b> - The default timeout that will be used on all the test methods found in this test.<br>
+<br>
+If a test method is annotated with <br>
+<b style="color:Tomato;">@Test(enabled = false)</b>, then the test case is not executed.<br>
+<br>
+Group test is a new innovative feature in TestNG, which doesn't exist in JUnit framework. It permits you to dispatch methods into proper portions and perform sophisticated groupings of test methods.<br>
+<b>eq:</b><br>
+<b style="color:Tomato;">@Test(groups = { "grpName1", "grpName2",.. })</b><br>
+<br>
+<br>
+<b>Groups declarations in testng.xml:</b><br>
+<br>
+<button type="button" class="collapsible"><b>XML Snippet - 1</b></button>
+<div class="content">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" &gt;
+    &lt;suite name="Suite1"&gt;
+    &lt;test name="test1"&gt;
+    &lt;groups&gt;
+    &lt;run&gt;
+    &lt;include name="functest" /&gt;
+    &lt;/run&gt;
+    &lt;/groups&gt;
+    &lt;classes&gt;
+    &lt;class name="GroupTestExample" /&gt;
+    &lt;/classes&gt;
+    &lt;/test&gt;
+    &lt;/suite&gt;
+
+</div>
+<br>
+<button type="button" class="collapsible"><b>XML Snippet - 2</b></button>
+<div class="content">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" &gt;
+    &lt;suite name="Suite1"&gt;
+    &lt;test name="test1"&gt;
+    &lt;groups&gt;
+    &lt;define name="all"&gt;
+    &lt;include name="functest"/&gt;
+    &lt;include name="checkintest"/&gt;
+    &lt;/define&gt;
+    &lt;run&gt;
+    &lt;include name="all"/&gt;
+    &lt;/run&gt;
+    &lt;/groups&gt;
+    &lt;classes&gt;
+    &lt;class name="GroupTestExample" /&gt;
+    &lt;/classes&gt;
+    &lt;/test&gt;
+    &lt;/suite&gt;
+
+</div>
+<br>
+
+<button type="button" class="collapsible"><b>XML Snippet - 3</b></button>
+<div class="content">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" &gt;
+    &lt;suite name="Suite1"&gt;
+    &lt;test name="test1"&gt;
+    &lt;groups&gt;
+    &lt;define name="all"&gt;
+    &lt;exclude name="functest"/&gt;
+    &lt;include name="checkintest"/&gt;
+    &lt;/define&gt;
+    &lt;run&gt;
+    &lt;include name="all"/&gt;
+    &lt;/run&gt;
+    &lt;/groups&gt;
+    &lt;classes&gt;
+    &lt;class name="GroupTestExample" /&gt;
+    &lt;/classes&gt;
+    &lt;/test&gt;
+    &lt;/suite&gt;
+
+</div>
+<br>
+<br>
+TestNG provides an option of tracing the exception handling of code.<br>
+eq: <b style="color:Tomato;">@Test(expectedExceptions = ArithmeticException.class)</b><br>
+<br>
+<br>
+<b>TestNG allows you to specify dependencies either with:</b><br>
+1. Using attribute dependsOnMethods in @Test annotations, OR<br>
+2. Using attribute dependsOnGroups in @Test annotations<br>
+<br>
+<br>
+<b>dependsOnGroups Vs dependsOnMethods:</b><br>
+1. On using groups, we are no longer exposed to refactoring problems. As long as we don't modify the dependsOnGroups or groups attributes, our tests will keep running with the proper dependencies set up.<br>
+2. Whenever a new method needs to be added in the dependency graph, all we need to do is put it in the right group and make sure it depends on the correct group. We don't need to modify any other method.<br>
+<br>
+<br>
+<b>TestNG lets you pass parameters directly to your test methods in two different ways:</b><br>
+1. With testng.xml<br>
+2. With Data Providers<br>
+<br>
+Tag parameter with <b style="color:Tomato;">name="myName"</b> and <b style="color:Tomato;">value="John"</b> should be part of xml file.<br>
+<br>
+<b style="color:Tomato;">@Parameters("myName")</b> will be part of test file.<br>
+<br>
+TestNG, by default, generates a different type of report for its test execution. This includes an HTML and an XML report output.<br>
+<br>
+<br>
+<b>There are two ways to generate a report with TestNG:</b><br>
+1. <b>Listeners</b>: For implementing a listener class, the class has to implement the <b style="color:Tomato;">org.testng.ITestListener</b> interface. These classes are notified at runtime by TestNG when the test starts, finishes, fails, skips, or passes.<br>
+2. <b>Reporters</b>: For implementing a reporting class, the class has to implement an <b style="color:Tomato;">org.testng.IReporter</b> interface. These classes are called when the whole suite run ends. The object containing the information of the whole test run is passed to this class when called.<br>
+<br>
+<b>Create Custom Logging Class :</b>
+<br>
+<br>
+<button type="button" class="collapsible"><b>Code Snippet in Java</b></button>
+<div class="content">
+    import org.testng.ITestResult;
+    import org.testng.TestListenerAdapter;
+
+    public class CustomListener extends TestListenerAdapter{
+    @Override
+    public void onTestStart(ITestResult result) {
+    log("Test Case STARTED : " + tr.getName());
+    }
+    @Override
+    public void onTestFailure(ITestResult tr) {
+    log("Test Case FAILED : " + tr.getName());
+    }
+    @Override
+    public void onTestSkipped(ITestResult tr) {
+    log("Test Case SKIPPED : " + tr.getName());
+    }
+    @Override
+    public void onTestSuccess(ITestResult tr) {
+    log("Test Case PASSED : " + tr.getName());
+    }
+    private void log(String statement) {
+    System.out.println("------------------------------");
+    System.out.println("\t" + statement);
+    System.out.println("------------------------------");
+    }
+    }
+
+</div>
+<br>
+<br>
+The above class extends TestListenerAdapter, which implements ITestListener with empty methods.<br>
+Hence, no need to override other methods from the interface.<br>
+
+<br>
+<button type="button" class="collapsible"><b>Create testng.xml</b></button>
+<div class="content">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;suite name="Simple Logger Suite"&gt;
+    &lt;listeners&gt;
+    &lt;listener class-name="CustomListener" /&gt;
+    &lt;/listeners&gt;
+
+    &lt;test name="Simple Logger test"&gt;
+    &lt;classes&gt;
+    &lt;class name="SampleTest" /&gt;
+    &lt;/classes&gt;
+    &lt;/test&gt;
+    &lt;/suite&gt;
+
+</div>
+<br>
+<br>
+<b>Create Custom Reporting Class :</b>
+<br>
+<br>
+<button type="button" class="collapsible"><b>Custom Reporter (Code snippet in Java)</b></button>
+<div class="content">
+    import java.util.List;
+    import java.util.Map;
+
+    import org.testng.IReporter;
+    import org.testng.ISuite;
+    import org.testng.ISuiteResult;
+    import org.testng.ITestContext;
+    import org.testng.xml.XmlSuite;
+
+    public class CustomReporter implements IReporter{
+    @Override
+    public void generateReport(List xmlSuites, List suites, String outputDirectory) {
+
+    // Loop through each executed suite
+    for (ISuite suite : suites) {
+    //Get the suite name for further process
+    String suiteName = suite.getName();
+
+    //Getting the results for the mentioned suite
+    Map suiteResults = suite.getResults();
+
+    for (ISuiteResult sr : suiteResults.values()) {
+    ITestContext tc = sr.getTestContext();
+
+    System.out.println("Passed tests for suite '" + suiteName + "' is:" + tc.getPassedTests().getAllResults().size());
+    System.out.println("Failed tests for suite '" + suiteName + "' is:" + tc.getFailedTests().getAllResults().size());
+    System.out.println("Skipped tests for suite '" + suiteName + "' is:" + tc.getSkippedTests().getAllResults().size());
+    }
+    }
+    }
+    }
+
+</div>
+<br>
+<br>
+<b>The method takes three arguments:</b><br>
+1. xmlSuite, which is the list of suites mentioned in the testng XML being executed.<br>
+2. suites, which contains the suite information after the test execution. This object contains all the information about the packages, classes, test methods, and their test execution results.<br>
+3. outputDirectory, which contains the information of the output folder path, where the reports will be generated.<br>
+<br>
+<button type="button" class="collapsible"><b>Custom Reporter (Code snippet in Java)</b></button>
+<div class="content">
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;suite name="Simple Reporter Suite"&gt;
+    &lt;listeners&gt;
+    &lt;listener class-name="CustomReporter" /&gt;
+    &lt;/listeners&gt;
+    &lt;test name="Simple Reporter test added"&gt;
+    &lt;classes&gt;
+    &lt;class name="SampleTest" /&gt;
+    &lt;/classes&gt;
+    &lt;/test&gt;
+    &lt;/suite&gt;
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

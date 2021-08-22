@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>AWS S3 Notes</h1>
+    <br>
+</div>
+<br>
+
+* Amazon Simple Storage Service - to Store and Retrieve any amount of data at any time, from anywhere on the web.<br>
+<br>
+* S3 stores data as objects. An Object consists of a file and optionally any metadata(Data about data). Buckets are containers for objects. When we upload a file, we can set the permissions on the object as well as any metadata.<br>
+<br>
+* For each bucket, we can control access to Create / to Delete / to List / to Update, view access logs for it or choose region.<br>
+<br>
+* Once we create a bucket, we cannot change the name.<br>
+<br>
+<b>aws s3 command format: </b><br>
+<br>
+<b style="color:Tomato;">aws s3 &lt;command&gt; [arguments]</b><br>
+<br>
+command - can be ls(list), cp(copy), rm(remove), sync, mv(move), mb(make bucket), rb(remove bucket), website and etc.<br>
+arguments - Separated by space. S3 URI format:<br>
+<br>
+s3://&lt;bucketname&gt;/[&lt;prefix/folder&gt;]/&lt;object&gt;<br>
+<br>
+<br>
+<b>Examples:</b><br>
+<br>
+1. Listing all S3 buckets or Listing the contents of specific S3 buckets :<br>
+<br>
+<b style="color:Tomato;">aws s3 ls</b><br>
+<br>
+<b style="color:Tomato;">aws s3 ls s3://example_bucket_name</b><br>
+<br>
+<br>
+2. Creating a bucket : (Must be Unique across S3)<br>
+<br>
+<b style="color:Tomato;">aws s3 mb s3://example_unique_bucket</b><br>
+<br>
+<br>
+3. Removing a bucket : (By defaut, To perform this task bucket should be empty)<br>
+<br>
+<b style="color:Tomato;">aws s3 rb s3://bucket_to_be_deleted</b><br>
+<br>
+<b style="color:Tomato;">aws s3 rb s3://bucket_to_be_deleted --force</b><br>
+<br>
+<br>
+4. High-Level commands : (ls, cp, rm and mv - Works just like Unix commands. Sharing only Copy and Remove examples) <br>
+<br>
+<b style="color:Tomato;">aws s3 cp localFile.txt s3://destination_bucket_name</b><br>
+<br>
+<b style="color:Tomato;">aws s3 cp s3://source_bucket_name/s3File.txt .</b><br>
+<br>
+<b style="color:Tomato;">aws s3 cp s3://source_bucket_name/ . --recursive</b><br>
+<br>
+<b style="color:Tomato;">aws s3 rm s3://old_bucket_name/old_file.txt</b><br>
+<br>
+<b style="color:Tomato;">aws s3 rm s3://old_bucket_name --recursive</b><br>
+<br>
+<br>
+* Exclude and Include Filters can be used for processing objects in pattern format:<br>
+<br>
+<b style="color:Tomato;">aws s3 cp s3://source_bucket_name/s3File.txt . --exclude "*" --include "*.txt" (Copies only txt extension files)</b><br>
+<br>
+<b style="color:Tomato;">aws s3 rm s3://old_bucket_name --recursive --exclude "*" --include "*.csv" (Deletes only csv extension files)</b><br>
+<br>
+<br>
+* Move S3 bucket to different location / Region :<br>
+<br>
+<b style="color:Tomato;">aws s3 sync s3://old_bucket_name s3://new_bucket_name --source-region us-west-1 --region us-west-3</b><br>
+<br>
+<br>
+5. Managing Objects : (Gives permission to view / write on an object in S3 bucket)<br>
+<br>
+Syntax:<br>
+<br>
+<b style="color:Tomato;">--grant &lt;permission&gt;=&lt;grantee_type&gt;=&lt;grantee_id&gt;</b><br>
+<br>
+Here,<br>
+permission - Can be read, readacl, writeacl or full.<br>
+grantee_type - cri, emailId or id.<br>
+<br>
+Example:<br>
+<br>
+<b style="color:Tomato;">--grant read=uri=http://acs.amazonaws.com/groups/global/AllUsers</b><br>
+<br>
+
+
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

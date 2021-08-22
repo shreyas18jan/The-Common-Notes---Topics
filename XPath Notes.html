@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>XPath Notes</h1>
+    <br>
+</div>
+<br>
+XSL stands for Extensible Stylesheet Language.<br>
+<br>
+<b>Following are the main parts of XSL:</b><br>
+1. XSLT - used to transform XML documents into various other types of documents. <br>
+2. XPath - used to navigate XML documents.  <br>
+3. XSL-FO - used to format XML documents. <br>
+<br>
+XPath is an official recommendation of the World Wide Web Consortium (W3C).<br>
+It defines a language to find information in an XML file.<br>
+It is used to traverse elements and attributes of an XML document.<br>
+<br>
+<b>XPath provides various types of expressions that can be used to enquire relevant information from the XML document:</b><br>
+1. <b style="color:Tomato;">Structure Definitions</b> - XPath defines the parts of an XML document like element, attribute, text, namespace, processing-instruction, comment, and document nodes  <br>
+2. <b style="color:Tomato;">Path Expressions</b> - XPath provides powerful path expressions to select nodes or a list of nodes in XML documents. <br>
+3. <b style="color:Tomato;">Standard Functions</b> - XPath provides a rich library of standard functions for manipulation of string values, numeric values, date and time comparison, node and QName manipulation, sequence manipulation, Boolean values, etc. <br>
+4. <b style="color:Tomato;">Major part of XSLT</b> - XPath is one of the major elements in XSLT standard and is must have knowledge in order to work with XSLT documents. <br>
+5. <b style="color:Tomato;">W3C recommendation</b> - XPath is an official recommendation of the World Wide Web Consortium (W3C). <br>
+<br>
+XPath is a core component of the XSLT standard.<br>
+XSLT cannot work without XPath. <br>
+XPath is the basis of XQuery and XPointer.<br>
+<br>
+An XPath expression generally defines a pattern in order to select a set of nodes.<br>
+<br>
+XPath specification specifies seven types of nodes which can be the output of the execution of the XPath expression. <br>
+1. <b>Root</b> - Root element node of an XML Document.<br>
+2. <b>Element</b> - Element node.<br>
+3. <b>Text</b> - Text of an element node. <br>
+4. <b>Attribute</b> - Attribute of an element node. <br>
+5. <b>Comment</b><br>
+6. <b>Processing Instruction</b><br>
+7. <b>Namespace</b><br>
+<br>
+Following is the list of useful paths and expression to select any node/ list of nodes from an XML document:<br>
+1. <b>node-name</b> - Select all nodes with the given name "nodename" <br>
+2. <b>/</b> - Selection starts from the root node <br>
+3. <b>//</b> - Selection starts from the current node that matches the selection <br>
+4. <b>.</b> - Selects the current node <br>
+5. <b>..</b> - Selects the parent of the current node <br>
+6. <b>@</b> - Selects attributes <br>
+7. <b>student</b> - Example: Selects all nodes with the name "student"<br>
+8. <b>class/student</b> - Example: Selects all student elements that are children of class <br>
+9. <b>//student</b> - Selects all student elements no matter where they are in the document<br>
+<br>
+Axes are used to identify elements by their relationship like parent, child, sibling, etc.<br>
+Following is the list of various Axis values:<br>
+1. <b style="color:Tomato;">ancestor</b> - Represents the ancestors of the current node which include the parents up to the root node. <br>
+2. <b style="color:Tomato;">ancestor-orself</b> - Represents the current node and its ancestors. <br>
+3. <b style="color:Tomato;">attribute</b> - Represents the attributes of the current node. <br>
+4. <b style="color:Tomato;">child</b> - Represents the children of the current node. <br>
+5. <b style="color:Tomato;">descendant</b> - Represents the descendants of the current node. Descendants include the node's children up to the leaf node(no more children). <br>
+6. <b style="color:Tomato;">descendant-orself</b> - Represents the current node and its descendants. <br>
+7. <b style="color:Tomato;">following</b> - Represents all nodes that come after the current node. <br>
+8. <b style="color:Tomato;">following-sibling</b> - Represents the following siblings of the context node. Siblings are at the same level as the current node and share its parent. <br>
+9. <b style="color:Tomato;">namespace</b> - Represents the namespace of the current node. <br>
+10. <b style="color:Tomato;">parent</b> - Represents the parent of the current node. <br>
+11. <b style="color:Tomato;">preceding</b> - Represents all nodes that come before the current node (i.e. before its opening tag). <br>
+12. <b style="color:Tomato;">self</b> - Represents the current node.<br>
+<br>
+<b>The following is a list of XPath String functions:</b><br>
+1. <b style="color:Tomato;">starts-with(string1, string2)</b> - Returns true when the first string starts with the second string.<br>
+2. <b style="color:Tomato;">contains(string1, string2)</b>  - Returns true when the first string contains the second string. <br>
+3. <b style="color:Tomato;">substring(string, offset, length?)</b> - Returns a section of the string. The section starts at offset up to the length provided. <br>
+4. <b style="color:Tomato;">substring-before(string1, string2)</b> - Returns the part of string1 up before the first occurrence of string2. <br>
+5. <b style="color:Tomato;">substring-after(string1, string2)</b> - Returns the part of string1 after the first occurrence of string2. <br>
+6. <b style="color:Tomato;">string-length(string)</b> - Returns the length of the string in terms of characters.<br>
+7. <b style="color:Tomato;">normalize-space(string)</b> - Trims the leading and trailing space from a string. <br>
+8. <b style="color:Tomato;">translate(string1, string2, string3)</b> - Returns string1 after any matching characters in string2 have been replaced by the characters in string3. <br>
+9. <b style="color:Tomato;">concat(string1, string2, ...)</b> - Concatenates all strings. <br>
+10. <b style="color:Tomato;">format-number(number1, string1, string2)</b> - Returns a formatted version of number1 after applying string1 as a format string. string2 is an optional locale string. <br>
+<br>
+XPath defines the following functions on nodes to be used with the XPath expressions:<br>
+1. <b>comment()</b> - selects nodes which are comments. <br>
+2. <b>node()</b> - selects all kinds of nodes. <br>
+3. <b>processing-instruction()</b> - selects nodes which are processing instruction. <br>
+4. <b>text()</b> - selects a text node. <br>
+5. <b>name()</b> - provides the name of the node. <br>
+6. <b>position()</b> - provides the position of the node. <br>
+7. <b>last()</b> - selects the last node relative to current node.<br>
+<br>
+XPath defines the following operators on nodes to be used with the XPath expressions:<br>
+1. <b>/</b> - used to select a node under a specific node. <br>
+2. <b>//</b> - used to select node from root node <br>
+3. <b>[...]</b> - used to check node value <br>
+4. <b>|</b> - used for union of two-node sets
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
+</body>
+</html>

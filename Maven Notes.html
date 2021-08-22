@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+th {
+  background-color: #A9A9A9;
+}
+table, th, td {
+  border: 1px solid black;
+  text-align: left;
+}
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+.active:after {
+  content: "\2796";
+}
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+<div style="background-color: #008080;color: white;text-align: center;">
+    <br>
+    <h1>Maven Notes</h1>
+    <br>
+</div>
+<br>
+<br>
+Maven is the Project Management + Comprehension tool that provides a complete build lifecycle framework.<br>
+<br>
+Maven provides developers ways to manage the following:<br>
+&emsp;- <b>Builds</b><br>
+&emsp;- <b>Documentation</b><br>
+&emsp;- <b>Reporting</b><br>
+&emsp;- <b>Dependencies</b><br>
+&emsp;- <b>SCMs</b><br>
+&emsp;- <b>Releases</b><br>
+&emsp;- <b>Distribution</b><br>
+&emsp;- <b>Mailing List</b><br>
+<br>
+To summarize, Maven simplifies and standardizes the project build process.<br>
+<br>
+Maven uses CONVENTION OVER CONFIGURATION, developers are not required to create a build process themselves because of the default project structure.<br>
+&emsp;- <b style="color:Tomato;">Source Code</b> : <b>${basedir}/src/main/java</b><br>
+&emsp;- <b style="color:Tomato;">Resources</b> : <b>${basedir}/src/main/resources</b><br>
+&emsp;- <b style="color:Tomato;">Test</b> : <b>${basedir}/src/test</b><br>
+&emsp;- <b style="color:Tomato;">Compiled Byte Code</b> : <b>${basedir}/target</b><br>
+&emsp;- <b style="color:Tomato;">Distributable JAR</b> : <b>${basedir}/target/classes</b><br>
+<br>
+POM(Project Object Model) is the fundamental unit of work in maven. It is an XML file that resides in the base directory of the project as pom.xml.<br>
+<br>
+POM contains information about the project and various configuration detail used by maven to build the project.<br>
+<br>
+All POM files require the project element/tag and three mandatory tags : groupId, artifactId and version.<br>
+&emsp;- project tag : We need to specify the basic schema settings such as apache schema and w3.org specifications etc.<br>
+&emsp;- Model version : Model version should be 4.0.0<br>
+&emsp;- groupId : Id of project's group. THis is generally unique in the organization or in project.<br>
+&emsp;- artifactId : Id of project. This is generally name of the project.<br>
+&emsp;- version : Version of the project.<br>
+<br>
+Along with the groupId, the artifactId defines the artifact's location within the repository.<br>
+<br>
+Along with the groupId, the version is used within an artifact's repository to separate versions from each other.<br>
+<br>
+Command used to load the default configurations of the super POM -<b style="color:Tomato;">mvn help:effective-pom</b><br>
+<br>
+Maven will make use of default project source folders structure, output directory, plugins required, repositories, reporting directory while executing the desired goal.<br>
+<br>
+Build lifecycle is a well defined sequence of phases, which defines the order in which the goals are ti be executed. Hence phase represents a stage in maven life cycle.<br>
+<br>
+Maven has 3 standard life cycles:<br>
+&emsp;- Clean<br>
+&emsp;- default (or build)<br>
+&emsp;- site<br>
+<br>
+Typical maven build life cycle consists of following sequences of phases:<br>
+&emsp;- Prepare resources : Resource copying<br>
+&emsp;- Validate : Validating the information.<br>
+&emsp;- Compile : Compilation.<br>
+&emsp;- Test : Testing.<br>
+&emsp;- Package : Packaging.<br>
+&emsp;- Install : Installation<br>
+&emsp;- deploy : deploying<br>
+<br>
+Maven site plugin is generally used to create fresh documentation - reports, deploy site, etc.<br>
+<br>
+The repository is a directory where all the project jars, library jar, plugins, or any other project-specific artifacts are store and can be used by maven easily.<br>
+<br>
+Local repository is a folder location on your machine. It gets created when you run any maven command for the first time.<br>
+<br>
+Central repository is a repository provided by the maven community. It contains a large number of commonly used libraries.<br>
+when maven does not find any dependency in the local repository, it starts searching in the central repository - http://repo1.maven.org/maven2/<br>
+<br>
+Maven provides the concept of the remote repository, which is the developer's own custom repository containing required libraries or other project jars.<br>
+<br>
+If dependency is not available in any of the remote / Central repository, maven allows external dependencies :<br>
+<b>
+    &lt;dependencies&gt;<br>
+    &emsp;&lt;dependency&gt;<br>
+    &emsp;&emsp;&lt;groupId&gt;ldap-jdk&lt;/groupId&gt;<br>
+    &emsp;&emsp;&lt;artifactId&gt;ldap-jdk&lt;/artifactId&gt;<br>
+    &emsp;&emsp;&lt;scope&gt;system&lt;/scope&gt;<br>
+    &emsp;&emsp;&lt;version&gt;1.0&lt;/version&gt;<br>
+    &emsp;&emsp;&lt;systemPath&gt;${basedir}/src/lib/ldapjdk.jar&lt;/systemPath&gt;<br>
+    &emsp;&lt;/dependency&gt;<br>
+    &lt;/dependencies&gt;<br>
+</b>
+<br>
+<br>
+Build profile is a set of configuration values, which can be used to set or override the default values of maven build.<br>
+Using a build profile, you can customize build for different environments such as production/development environment, etc.<br>
+<br>
+Maven build profile can be activated in various ways:<br>
+&emsp;- Explicitly using command console input.<br>
+&emsp;- Through maven settings.<br>
+&emsp;- Based on environmental variables.<br>
+&emsp;- OS Settings.<br>
+&emsp;- Based on existence of a file/s.<br>
+<br>
+Environment specific files looks like this:<br>
+&emsp;- env.properties<br>
+&emsp;- env.test.properties<br>
+&emsp;- env.prod.properties<br>
+<br>
+To define property in maven:<br>
+<b>
+    &lt;properties&gt;<br>
+    &emsp;&lt;wls.minor.version&gt;10.1.5&lt;/wls.minor.version&gt;<br>
+    &emsp;&lt;wls.major.version&gt;12.2.1&lt;/wls.major.version&gt;<br>
+    &lt;/properties&gt;<br>
+</b>
+<br>
+To activate profile from console command : <b style="color:Tomato;"> mvn test -ptest</b><br>
+under <b>%USER_HOME%/.m2/settings.xml</b>, need to add this<br>
+<b>
+    &lt;activeProfiles&gt;<br>
+    &emsp;&lt;activeProfile&gt;test&lt;/activeProfiles&gt;<br>
+    &lt;/activeProfiles&gt;<br>
+</b>
+<br>
+A plugin generally provides set of goals : <b style="color:Tomato;">mvn [plugin-name]:[goal-name]</b><br>
+<br>
+Maven uses archetype plugins to create projects:<br>
+&emsp;<b>mvn archetype:generate<br>
+    &emsp;&emsp;-DgroupId=com.example.com<br>
+    &emsp;&emsp;-DartifactId=exampleCase<br>
+    &emsp;&emsp;-DarchetypeArtifactId=maven-archetype-quickstart<br>
+    &emsp;&emsp;-DinteractiveMode=false<br>
+    <br>
+    <br>
+    <br>
+    <br></b>
+</body>
+</html>
