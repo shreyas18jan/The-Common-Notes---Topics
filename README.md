@@ -4,4 +4,4 @@ Quick + Small notes prepared for quick Brush Up
 Mobile App Can be found here - [PlayStore Link here](https://play.google.com/store/apps/details?id=com.thecommonguy.the_common_notes)
 
 # Topics :
-  - [Ant Notes](Ant Notes.html)
+  - [Ant Notes](Ant%20Notes.html)
