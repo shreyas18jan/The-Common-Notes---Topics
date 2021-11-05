@@ -12,6 +12,7 @@ Mobile App Can be found here - [PlayStore Link here](https://play.google.com/sto
   - [HTML Notes](HTML%20Notes.html)
   - [JMeter Notes](JMeter%20Notes.html)
   - [JSON Notes](JSON%20Notes.html)
+  - [Kafka Notes](Kafka%20Notes.html)
   - [Maven Notes](Maven%20Notes.html)
   - [MicroService Notes](MicroService%20Notes.html)
   - [TestNG Notes](TestNG%20Notes.html)

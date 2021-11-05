@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+.collapsible:after {
+  content: '\2795';
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
+.collapsible {
+  background-color: #FFFFFF;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline-style: double;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #FFFFFF;
+}
+
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  overflow: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  outline-style: double;
+}
+</style>
+</head>
+<body>
+    <div style="background-color: #008080;color: white;text-align: center;">
+        <br>
+        <h1>Kafka Notes</h1>
+        <br>
+    </div>
+<br><br>
+<b>Problem Statement</b>:<br>
+&emsp;&emsp;Let us take ECommerce Checkout as an example. Modules like Shipment, Inventory and Notification etc are dependent on Checkout system. We need to have a Integration points to each of these modules. This means Extra layers of Code and Maintaining it. The checkout process is continous process like stream. If we want to create a new service, then we have to couple the new service with Checkout system with new integration point.<br>
+&emsp;&emsp;There should be a system which De-Couples such System dependencies.<br>
+<br>
+<br>
+<b>Solution:</b><br>
+&emsp;&emsp;With Kafka, Hard integration no longer needed. Everytime the checkout completes its process, it will start Publishing the Completion Messages / Stream of events. Checkout need not worry about how many modules are dependent on it. Checkout essentially Broadcasts the events. If a module wants collect the events from Checkout, module just needs to subscribe to that stream. This message serves as the action required to be taken. This gives another advantage where Single module can listen/Subscribe to more than one module.<br>
+<br>
+<br>
+<b>Kafka uses</b>:<br>
+- An Open source, Distributed Streaming platform that helps in developing Event-Driven Applications.<br>
+- It relies on Producer-Consumer (or Publisher-Subscriber) approach to deal with streams of data records.<br>
+- Has High accuracy in mainting the data records.<br>
+- Maintains order of the data record occurrences also.<br>
+- Can be used as Messaging Service.<br>
+- Can be used as Location tracking.<br>
+- Can be used in Data Analytics as Data gathering event.<br>
+<br>
+<br>
+<b>More About Kafka:</b><br>
+Deals with term called Topics, an ordered list of events.<br>
+Kafka is built on 4 Core APIs. <br>
+&emsp;&emsp;- <b style="color:Tomato;">Producer</b> : Contains a set of API’s, allows us to publish a stream of data to one or more of the named/categorized Kafka topics in the cluster.<br>
+&emsp;&emsp;- <b style="color:Tomato;">Consumer</b> : Contains a set of API’s, allows us to Consume a stream of data from one or more of the named/categorized Kafka topics in the cluster.<br>
+&emsp;&emsp;- <b style="color:Tomato;">Streams</b> : Contains relevant API’s, acts on the stream of data. They can process this stream data and can transform it from existing form to a designated form according to your use case demands. These are relatively new API's as against existing producer and consumer API’s.<br>
+&emsp;&emsp;- <b style="color:Tomato;">Connector</b> : Contains relevant API’s, allows Kafka to be extensible. It contains methods which can be used to build Kafka connectors for the inputting and outputting of data into Kafka. Write once and use it many times.<br>
+<br>
+<br>
+<b>Kafka Setup and Using it programmatically</b><br><br>
+1. Download Kafka Binary from this link - <a href="https://kafka.apache.org/downloads">Click Here!</a><br>
+<br>
+2. After download gunzip the downloaded file.<br>
+<br>
+3. Start the ZooKeeper service<br>
+<br>
+<button type="button" class="collapsible"><b>Shell Command</b></button>
+<div class="content">
+<br><b style="color:blue;">&lt;KAFKA_FOLDER&gt;/bin/zookeeper-server-start.sh &lt;KAFKA_FOLDER&gt;/config/zookeeper.properties</b><br>
+</div><br>
+<br>
+<b>ZooKeeper</b> - acts as a centralized service, maintains naming and configuration data, Kafka cluster nodes and topics, partitions etc.
+<br><br>
+4. Start the Broker Service<br>
+<br>
+<button type="button" class="collapsible"><b>Shell Command</b></button>
+<div class="content">
+<br><b style="color:blue;">&lt;KAFKA_FOLDER&gt;/bin/kafka-server-start.sh &lt;KAFKA_FOLDER&gt;/config/server.properties</b><br>
+</div>
+<br>
+<br>
+5. Create a Kafka topic<br>
+<br>
+<button type="button" class="collapsible"><b>Shell Command</b></button>
+<div class="content">
+<br><b style="color:blue;">&lt;KAFKA_FOLDER&gt;/bin/katopics.sh --create --topic KafkaExample --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1</b><br>
+</div><br>
+<br>
+6. Create a new maven project with following Maven dependencies<br>
+<br>
+<button type="button" class="collapsible"><b>Maven Dependencies</b></button>
+<div class="content">
+    &emsp;&lt;dependencies&gt;
+    &emsp;&emsp;&lt;dependency&gt;
+    &emsp;&emsp;&emsp;&lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;
+    &emsp;&emsp;&emsp;&lt;artifactId&gt;spring-kafka&lt;/artifactId&gt;
+    &emsp;&emsp;&lt;/dependency&gt;
+    &emsp;&emsp;&lt;dependency&gt;
+    &emsp;&emsp;&emsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &emsp;&emsp;&emsp;&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &emsp;&emsp;&emsp;&lt;version&gt;2.5.5&lt;/version&gt;
+    &emsp;&emsp;&lt;/dependency&gt;
+    &emsp;&emsp;&lt;dependency&gt;
+    &emsp;&emsp;&emsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &emsp;&emsp;&emsp;&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+    &emsp;&emsp;&emsp;&lt;version&gt;2.5.5&lt;/version&gt;
+    &emsp;&emsp;&emsp;&lt;scope&gt;test&lt;/scope&gt;
+    &emsp;&emsp;&lt;/dependency&gt;
+    &emsp;&emsp;&lt;dependency&gt;
+    &emsp;&emsp;&emsp;&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &emsp;&emsp;&emsp;&lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &emsp;&emsp;&emsp;&lt;version&gt;1.18.22&lt;/version&gt;
+    &emsp;&emsp;&emsp;&lt;scope&gt;provided&lt;/scope&gt;
+    &emsp;&emsp;&lt;/dependency&gt;
+    &emsp;&lt;/dependencies&gt;
+    <br>
+</div><br>
+<br>
+7. To publish the message , we need KafkaTemplate. Let us autowire it and use it inside our API.<br>
+<br>
+<button type="button" class="collapsible"><b>Java Code Snippet</b></button>
+<div class="content">
+    <br>
+    @Autowired
+    KafkaTemplate&lt;String, String&gt; kafkaTemplate;
+
+    private final String topicName = "KafkaTopic";
+
+    @PostMapping("/publish_message_v1/{message}")
+    public String publishMessageV1(@PathVariable String message){
+        kafkaTemplate.send(topicName, message);
+        return "Published V1 Message Successfully!";
+    }
+    <br>
+</div><br>
+<br>
+8. To consume the message, we need to listen to the topic. We should be able to achieve with the help of @KafkaListener<br>
+<br>
+<button type="button" class="collapsible"><b>Java Code Snippet</b></button>
+<div class="content">
+<br>
+    @KafkaListener(topics = topicName, groupId = "group_id")
+    public void consumeMessageV1(String message) {
+        System.out.println("Consumed the message : " + message);
+    }
+    <br>
+</div><br>
+<br>
+9. We need to add @service tag and @EnableKafka for keeping the Subscriber/Consumer listening to the Published message.<br>
+<br>
+<br>
+10. Now we can start the SpringBootApplication with the following command:<br>
+<br>
+<button type="button" class="collapsible"><b>Maven Command to Run</b></button>
+<div class="content">
+<br>
+<b style="color:blue;">mvn clean install spring-boot:run</b>
+<br>
+</div><br>
+<br>
+11. Now call the following API and check the logs.<br>
+<br>
+<button type="button" class="collapsible"><b>Execute command in Shell</b></button>
+<div class="content">
+<br>
+<b style="color:blue;">curl --location --request POST 'http://localhost:9909/api/publish_message_v1/PUBLISH_MESSAGE_V1'</b>
+<br>
+</div><br>
+<br>
+12. Now we can see the Message getting posted and cosumed. To cross check, we can run the following scripts in separate terminals, and we can see the message getting Pusblished and Consumed:<br>
+<br>
+&emsp;&emsp;* To Check the Publish the Message Manually, Execute the following command and type the message:<br>
+<br>
+<button type="button" class="collapsible"><b>Execute command in Shell</b></button>
+<div class="content">
+<br>
+<br><b style="color:blue;">&lt;KAFKA_FOLDER&gt;/bin/kafka-console-producer.sh --topic KafkaTopic --broker-list localhost:9092</b><br>
+> PUBLISH_MESSAGE_V1
+<br>
+</div><br><br>
+&emsp;&emsp;* To check the published Message Manually, Execute the following command and call the API in step 10:<br>
+<br>
+<button type="button" class="collapsible"><b>Execute command in Shell</b></button>
+<div class="content">
+<br><b style="color:blue;">&lt;KAFKA_FOLDER&gt;/bin/kafka-console-consumer.sh --topic KafkaTopic --from-beginning --bootstrap-server localhost:9092</b><br>
+</div><br>
+
+<br>
+<br>
+<br>
+<br>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+</body>
+</html>
